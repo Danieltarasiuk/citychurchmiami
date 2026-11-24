@@ -10,7 +10,7 @@ export const links = {
   give: `${CC}/giving${modal}`,
   kidsEs: `${CC}/registrations/events/3800315`,
   kidsEn: `${CC}/registrations/events/3793386`,
-  youtube: 'https://www.youtube.com/@citychurchmia',
+  youtube: 'https://www.youtube.com/@citychurchmiami',
   instagramEs: 'https://www.instagram.com/iglesiadelaciudad.miami/',
   instagramEn: 'https://www.instagram.com/citychurch.miami/',
   facebook: 'https://www.facebook.com/citychurchmia',
