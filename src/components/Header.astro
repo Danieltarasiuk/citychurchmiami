@@ -4,13 +4,15 @@ interface Props { lang: Lang; page: RouteKey; }
 const { lang, page } = Astro.props;
 const other: Lang = lang === 'es' ? 'en' : 'es';
 const t = lang === 'es'
-  ? { first: '¿Primera vez?', give: 'Dar', menu: 'Menú', close: 'Cerrar', home: 'Inicio de CityChurch Miami', switchTo: 'Ver en inglés' }
+  ? { first: '¿Primera vez?', give: 'Dar', menu: 'Menú', close: 'Cerrar', home: 'Inicio de Iglesia de la Ciudad', switchTo: 'Ver en inglés' }
   : { first: 'First time?', give: 'Give', menu: 'Menu', close: 'Close', home: 'CityChurch Miami home', switchTo: 'Ver en español' };
 ---
 <header class="site-header">
   <div class="wrap bar">
     <a class="brand" href={routes.home[lang]} aria-label={t.home}>
-      <img src="/brand/logo-black.png" alt="CityChurch" width="170" height="50" />
+      {lang === 'es'
+        ? <img class="logo logo--es" src="/brand/logo-es-black.png" alt="Iglesia de la Ciudad" width="1147" height="172" />
+        : <img class="logo" src="/brand/logo-black.png" alt="CityChurch" width="789" height="206" />}
     </a>
 
     <nav class="primary" aria-label={lang === 'es' ? 'Principal' : 'Main'}>
@@ -64,8 +66,10 @@ const t = lang === 'es'
     backdrop-filter: saturate(1.2) blur(10px);
     border-bottom: 1px solid var(--line);
   }
-  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 76px; }
-  .brand img { height: 42px; width: auto; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 92px; }
+  .brand { flex: none; }
+  .brand .logo { height: 58px; width: auto; }
+  .brand .logo--es { height: 46px; }
   .primary ul { display: flex; gap: clamp(1rem, 2vw, 1.8rem); list-style: none; margin: 0; padding: 0; }
   .primary a, .mobile-nav a {
     font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
@@ -90,12 +94,17 @@ const t = lang === 'es'
   .mobile-nav ul { list-style: none; padding-block: 1rem 1.5rem; margin-block: 0; }
   .mobile-nav li a { display: block; padding: 0.7rem 0; font-size: 1.6rem; border-bottom: 1px solid var(--line); }
 
-  @media (max-width: 1080px) {
+  @media (max-width: 1240px) {
     .primary { display: none; }
     .menu-btn { display: block; }
   }
   @media (max-width: 560px) {
+    .bar { min-height: 76px; }
     .first { display: none; }
-    .brand img { height: 34px; }
+    .brand .logo { height: 44px; }
+    .brand .logo--es { height: 30px; }
+  }
+  @media (max-width: 380px) {
+    .brand .logo--es { height: 25px; }
   }
 </style>

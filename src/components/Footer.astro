@@ -7,7 +7,9 @@ const es = lang === 'es';
 <footer class="site-footer section--dark">
   <div class="wrap grid">
     <div class="about">
-      <img src="/brand/logo-white.png" alt="CityChurch" width="200" height="59" />
+      {es
+        ? <img class="flogo flogo--es" src="/brand/logo-es-white.png" alt="Iglesia de la Ciudad" width="1147" height="172" />
+        : <img class="flogo" src="/brand/logo-white.png" alt="CityChurch" width="789" height="206" />}
       <p class="tag">De casa en casa. De ciudad en ciudad.</p>
     </div>
 
@@ -39,7 +41,7 @@ const es = lang === 'es';
   </div>
 
   <div class="wrap bottom">
-    <span>© {new Date().getFullYear()} CityChurch Miami</span>
+    <span>© {new Date().getFullYear()} {es ? 'Iglesia de la Ciudad' : 'CityChurch Miami'}</span>
     <span class="social">
       <a href={links.youtube}>YouTube</a>
       <a href={es ? links.instagramEs : links.instagramEn}>Instagram</a>
@@ -52,7 +54,8 @@ const es = lang === 'es';
   .site-footer { padding-block: clamp(3.5rem, 7vw, 5rem) 2rem; }
   .grid { display: grid; gap: 2.5rem; }
   @media (min-width: 860px) { .grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
-  .about img { width: 200px; height: auto; margin-bottom: 1rem; }
+  .about .flogo { width: 210px; height: auto; margin-bottom: 1rem; }
+  .about .flogo--es { width: 280px; max-width: 100%; }
   .tag { font-family: var(--scripture); font-style: italic; color: var(--stone); }
   .label { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.14em; color: var(--orange); margin-bottom: 1rem; }
   ul { list-style: none; margin: 0; padding: 0; }

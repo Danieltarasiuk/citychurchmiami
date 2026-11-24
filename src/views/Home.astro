@@ -7,7 +7,7 @@ const es = lang === 'es';
 
 const copy = {
   es: {
-    title: 'CityChurch Miami | Una iglesia de iglesias en casa en Doral',
+    title: 'Iglesia de la Ciudad | Una iglesia de iglesias en casa en Doral',
     description: 'Iglesia cristiana en español en Doral, Miami. Nos reunimos los domingos a las 10 AM en John I. Smith K-8 y en iglesias en casa durante la semana. Ven tal como estás.',
     kicker: `Domingos ${sunday.time} · Doral, Miami`,
     h1: 'Una iglesia de iglesias en casa.',
@@ -27,7 +27,7 @@ const copy = {
     giant: ['De casa', 'en casa.'],
     mission: 'Somos una iglesia de iglesias en casa en Miami, con el anhelo de ver a Dios obrar de manera sobrenatural en cada ciudad, por medio de una comunidad de discípulos que viven el evangelio como una familia en misión.',
     about: 'Quiénes somos',
-    newTitle: '¿Nuevo en CityChurch?',
+    newTitle: '¿Nuevo en Iglesia de la Ciudad?',
     newText: 'Ven tal como estás. Te esperamos en la puerta y te presentamos a alguien.',
     newBtn: 'Avísanos que vienes',
     newAlt: 'Una madre abraza a su hijo durante la adoración',
@@ -44,9 +44,6 @@ const copy = {
     houseText: 'Durante la semana nos reunimos en hogares para comer juntos, orar y abrir la Biblia.',
     houseBtn: 'Únete a una iglesia en casa',
     houseAlt: 'La Biblia abierta durante una iglesia en casa',
-    engTitle: '¿Hablas inglés? Estamos empezando algo nuevo.',
-    engText: 'Una reunión de CityChurch en inglés que comienza el Domingo de Resurrección de 2027.',
-    engBtn: 'Más información',
     ctaTitle: 'Mantente conectado.',
     ctaText: 'Déjanos tus datos y te escribimos personalmente para ayudarte a dar el siguiente paso.',
     ctaBtn: 'Mantente conectado',
@@ -89,9 +86,6 @@ const copy = {
     houseText: 'During the week we meet in homes to share a meal, pray, and open the Bible together.',
     houseBtn: 'Join a house church',
     houseAlt: 'An open Bible during a house church',
-    engTitle: 'An English gathering is starting.',
-    engText: 'We launch Easter Sunday 2027, and monthly meetings are happening now.',
-    engBtn: 'Learn more',
     ctaTitle: 'Stay connected.',
     ctaText: 'Leave us your info and we will reach out personally to help you take your next step.',
     ctaBtn: 'Stay connected',
@@ -109,6 +103,24 @@ const copy = {
       <div class="btn-row">
         <a class="btn btn--orange" href={routes.first[lang]}>{copy.plan}</a>
         <a class="btn btn--ghost" href={routes.houses[lang]}>{copy.houses}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sunday-band">
+    <div class="wrap sb">
+      <div class="sb-time">
+        <span class="sb-day">{es ? 'Domingos' : 'Sundays'}</span>
+        <span class="sb-hour">{sunday.time.replace(':00', '')}</span>
+      </div>
+      <div class="sb-place">
+        <strong>{sunday.place}</strong>
+        <span>{sunday.address}</span>
+        {!es && <em>Service in Spanish</em>}
+      </div>
+      <div class="sb-btns">
+        <a class="btn btn--orange" href={routes.first[lang]}>{copy.plan}</a>
+        <a class="btn btn--light-ghost" href={links.maps}>{es ? 'Cómo llegar' : 'Directions'}</a>
       </div>
     </div>
   </section>
@@ -185,16 +197,6 @@ const copy = {
     </div>
   </section>
 
-  <section class="section--teal english">
-    <div class="wrap row">
-      <div>
-        <h2>{copy.engTitle}</h2>
-        <p class="muted">{copy.engText}</p>
-      </div>
-      <a class="btn btn--light" href={routes.english.en} lang="en">{copy.engBtn}</a>
-    </div>
-  </section>
-
   <section class="section">
     <div class="wrap row">
       <div>
@@ -215,8 +217,20 @@ const copy = {
   .stone { color: var(--stone); }
   .poster { overflow: hidden; }
   .video { border-radius: 0; }
-  .english { padding-block: clamp(3rem, 6vw, 4.5rem); }
-  .english h2 { margin-bottom: 0.25em; }
+  .sunday-band { background: var(--charcoal); color: var(--cream); padding-block: clamp(2rem, 4vw, 2.75rem); }
+  .sb { display: grid; gap: 1.25rem 3rem; align-items: center; }
+  @media (min-width: 900px) { .sb { grid-template-columns: auto 1fr auto; } }
+  .sb-time { display: flex; align-items: baseline; gap: 0.9rem; font-family: var(--display); font-weight: 900; text-transform: uppercase; line-height: 0.85; }
+  .sb-day { font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.6rem); color: var(--cream); }
+  .sb-hour { font-size: clamp(3.4rem, 2.2rem + 4.6vw, 6.2rem); color: var(--orange); }
+  .sb-place { display: grid; gap: 0.2rem; font-size: var(--step-1); line-height: 1.3; }
+  .sb-place strong { font-weight: 600; color: var(--white); }
+  .sb-place span { color: rgba(250,246,240,0.82); }
+  .sb-place em { font-family: var(--scripture); color: var(--stone); font-size: var(--step-0); }
+  .sb-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  @media (max-width: 760px) { .sb-btns .btn--orange { display: none; } }
+  .btn--light-ghost { background: transparent; border-color: var(--cream); color: var(--cream); }
+  .btn--light-ghost:hover { background: var(--cream); color: var(--charcoal); }
   .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem 3rem; }
   .row h2 { max-width: 22ch; }
 </style>

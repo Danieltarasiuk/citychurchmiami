@@ -45,7 +45,7 @@ const social = [
   { name: 'YouTube', href: links.youtube, path: 'M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z' },
 ];
 ---
-<Base lang="es" page="sunday" title="Domingo" description="CityChurch Miami: sitio web, sermones, iglesias en casa y ofrendas." bare>
+<Base lang="es" page="sunday" title="Domingo" description="Iglesia de la Ciudad: sitio web, sermones, iglesias en casa y ofrendas." bare>
   <section class="bio">
     <div class="card">
       <div class="lang" role="group" aria-label="Idioma / Language">
@@ -53,10 +53,10 @@ const social = [
         <button type="button" data-set="en" aria-pressed="false">EN</button>
       </div>
       <div class="logo"><img src="/brand/symbol-black.png" alt="" width="120" height="120" /></div>
-      <h1>CityChurch Miami</h1>
 
       {(['es', 'en'] as const).map((l) => (
         <div class="set" data-lang={l} lang={l} hidden={l === 'en'}>
+          <h1>{l === 'es' ? 'Iglesia de la Ciudad' : 'CityChurch Miami'}</h1>
           <p class="tag">{sets[l].tag}</p>
           <ul class="social">
             {social.map((so) => (
