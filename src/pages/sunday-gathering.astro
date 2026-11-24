@@ -1,0 +1,63 @@
+---
+// Página del domingo. El código QR en pantalla y en impresos apunta aquí:
+// citychurch.miami/sunday-gathering/  (no cambiar esta dirección)
+import Base from '../layouts/Base.astro';
+import { links, routes, playlists, playlistUrl } from '../data/site';
+
+const items = [
+  { es: '¿Primera vez? Déjanos tus datos', en: 'First time? Leave us your info', href: links.stayConnected, main: true },
+  { es: 'Registro de niños', en: 'Kids registration', href: links.kidsEs },
+  { es: 'Dar', en: 'Give', href: links.give },
+  { es: 'Únete a una iglesia en casa', en: 'Join a house church', href: links.joinHouseChurch },
+  { es: 'Sirve con nosotros', en: 'Serve with us', href: links.serve },
+  { es: `Serie actual: ${playlists.current.name}`, en: 'Current series on YouTube', href: playlistUrl(playlists.current.id) },
+];
+---
+<Base lang="es" page="sunday" title="Domingo" description="Bienvenido a CityChurch Miami. Todo lo que necesitas para este domingo.">
+  <section class="sunday">
+    <div class="wrap narrow">
+      <span class="kicker">Domingo · Sunday</span>
+      <h1>Bienvenido a casa.</h1>
+      <p class="en">Welcome home.</p>
+      <p class="intro">Nos alegra que estés aquí. Toca una opción para dar tu siguiente paso.<br /><em>We're glad you're here. Tap an option to take your next step.</em></p>
+
+      <ul class="links">
+        {items.map((i) => (
+          <li>
+            <a class={i.main ? 'main' : ''} href={i.href}>
+              <span class="es">{i.es}</span>
+              <span class="en-sub">{i.en}</span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <blockquote class="scripture">«Y todos los días, en el templo y de casa en casa, no cesaban de enseñar y proclamar el evangelio de Jesús como el Cristo.»<cite>Hechos 5:42 (NBLA)</cite></blockquote>
+
+      <p class="more"><a class="arrow-link" href={routes.home.es}>citychurch.miami</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sunday { padding-block: clamp(2rem, 6vw, 4rem) var(--section); }
+  .narrow { max-width: 640px; }
+  h1 { font-size: clamp(3rem, 2rem + 6vw, 5rem); margin-bottom: 0.1em; }
+  .en { font-family: var(--scripture); font-style: italic; font-size: var(--step-1); color: var(--ink-2); margin-bottom: 1.25rem; }
+  .intro em { color: var(--ink-2); }
+  .links { list-style: none; padding: 0; margin: 2rem 0; display: grid; gap: 0.75rem; }
+  .links a {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem;
+    text-decoration: none; background: var(--white); border: 1px solid var(--line); border-radius: 16px;
+    padding: 1.1rem 1.25rem; transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .links a:hover { transform: translateY(-2px); border-color: var(--orange); }
+  .links a.main { background: var(--orange); border-color: var(--orange); }
+  .es { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--step-1); line-height: 1.05; }
+  .en-sub { grid-column: 1; font-style: italic; font-size: var(--step--1); color: var(--ink-2); }
+  .main .en-sub { color: var(--charcoal); }
+  .arrow { grid-column: 2; grid-row: 1 / span 2; font-size: 1.5rem; color: var(--orange-ink); }
+  .main .arrow { color: var(--charcoal); }
+  .more { margin-top: 2rem; }
+</style>

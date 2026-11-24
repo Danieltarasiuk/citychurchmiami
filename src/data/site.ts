@@ -50,6 +50,7 @@ export const routes = {
   community: { es: '/comunidad/', en: '/en/community/' },
   houses: { es: '/iglesias-en-casa/', en: '/en/house-churches/' },
   first: { es: '/primera-vez/', en: '/en/first-time/' },
+  sunday: { es: '/sunday-gathering/', en: '/sunday-gathering/' },
 } as const;
 
 export type RouteKey = keyof typeof routes;
