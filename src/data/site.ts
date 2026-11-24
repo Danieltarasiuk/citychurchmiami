@@ -26,14 +26,17 @@ export const sunday = {
 export const playlists = {
   // Videos subidos al canal, sin Shorts (UULF + ID del canal). Siempre muestra el más reciente primero.
   latest: 'UULFEtoZshJbVrhcT87Ha3o7Ww',
-  current: { name: '1 Corintios', id: 'PL71hlXEzBKMvOn89FJXQ18Cs7xWgynpcw' },
+  current: { name: 'El Caminar de un Discípulo', id: 'PLaAkblbOH2fM' },
   previous: [
-    { name: 'Adviento 2025', id: 'PL71hlXEzBKMtCAGv7CveSEMko_4P77lR7' },
+    { name: '1 Corintios', id: 'PL71hlXEzBKMvOn89FJXQ18Cs7xWgynpcw' },
     { name: 'Mayordomía', id: 'PL71hlXEzBKMu0C2TbO67qRcy8dpnclGzV' },
     { name: 'Nehemías', id: 'PL71hlXEzBKMv73uLHHL0dyV_IGDdtcCr7' },
+    { name: 'Adviento 2025', id: 'PL71hlXEzBKMtnfU93aGiD2kgN1RPuijTm' },
     { name: 'Hechos', id: 'PL71hlXEzBKMvnOEOLDhq9w3IfD0wvFyKa' },
     { name: 'Efesios', id: 'PL71hlXEzBKMuenxvh4Uc4PxBr8mauc7uy' },
+    { name: 'Adviento 2024', id: 'PL71hlXEzBKMtCAGv7CveSEMko_4P77lR7' },
     { name: 'El Evangelio de Lucas', id: 'PL71hlXEzBKMus1sQYqP_3KqngZCNFM5wc' },
+    { name: 'La Clave del Gozo (Filipenses)', id: 'PL71hlXEzBKMu7vzdCJHWW8u834E5aGBvk' },
   ],
 };
 
