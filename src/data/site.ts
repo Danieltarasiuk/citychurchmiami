@@ -24,7 +24,8 @@ export const sunday = {
 };
 
 export const playlists = {
-  sermons: 'PL71hlXEzBKMu0lNo0Y0CeDkHrkTnTDsad',
+  // Videos subidos al canal, sin Shorts (UULF + ID del canal). Siempre muestra el más reciente primero.
+  latest: 'UULFEtoZshJbVrhcT87Ha3o7Ww',
   current: { name: '1 Corintios', id: 'PL71hlXEzBKMvOn89FJXQ18Cs7xWgynpcw' },
   previous: [
     { name: 'Adviento 2025', id: 'PL71hlXEzBKMtCAGv7CveSEMko_4P77lR7' },

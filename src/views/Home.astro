@@ -26,7 +26,7 @@ const copy = {
     directions: 'Cómo llegar',
     sermonKicker: 'Último mensaje',
     sermonTitle: 'La Biblia, de manera simple y clara.',
-    sermonText: `Estamos predicando la serie ${playlists.current.name}. Puedes ver los mensajes en YouTube cuando quieras.`,
+    sermonText: 'Este es nuestro mensaje más reciente. Puedes ver todos los mensajes en YouTube cuando quieras.',
     allSermons: 'Ver todos los mensajes',
     housesKicker: 'Iglesias en casa',
     housesTitle: 'La iglesia más cercana a ti es la tuya.',
@@ -65,7 +65,7 @@ const copy = {
     directions: 'Directions',
     sermonKicker: 'Latest message',
     sermonTitle: 'The Bible, simple and clear.',
-    sermonText: `We are preaching through ${playlists.current.name} (1 Corinthians). Watch the messages on YouTube anytime.`,
+    sermonText: 'This is our most recent message (in Spanish). Watch all our messages on YouTube anytime.',
     allSermons: 'All messages',
     housesKicker: 'House churches',
     housesTitle: 'The church closest to you is yours.',
@@ -138,7 +138,7 @@ const copy = {
   <section class="section section--white">
     <div class="wrap split split--wide-left">
       <div class="video">
-        <iframe src={playlistEmbed(playlists.sermons)} title={copy.sermonKicker} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src={playlistEmbed(playlists.latest)} title={copy.sermonKicker} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       <div>
         <span class="kicker">{copy.sermonKicker}</span>
