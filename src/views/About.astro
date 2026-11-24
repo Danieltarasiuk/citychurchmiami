@@ -1,0 +1,193 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { links, type Lang } from '../data/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    title: 'Acerca',
+    description: 'CityChurch Miami es una iglesia de iglesias en casa. Conoce nuestra misión, valores, creencias y liderazgo.',
+    kicker: 'Acerca de nosotros',
+    h1: 'Una iglesia de iglesias en casa.',
+    lead: 'No somos una iglesia tradicional con un solo punto de reunión. Somos una red de comunidades pequeñas, iglesias en casa, dispersas por Miami y conectadas por una misma fe, una misma misión y un mismo Señor.',
+    sub: ['Quiénes somos', 'Valores', 'Creencias', 'Liderazgo'],
+    missionKicker: 'Quiénes somos',
+    mission: 'Somos una iglesia de iglesias en casa en Miami, con el anhelo de ver a Dios obrar de manera sobrenatural en cada ciudad, por medio de una comunidad de discípulos que viven el evangelio como una familia en misión.',
+    tagline: 'De casa en casa. De ciudad en ciudad.',
+    valuesKicker: 'Lo que nos define',
+    valuesTitle: 'Nuestros valores',
+    valuesIntro: 'Estos valores describen cómo intentamos vivir juntos como comunidad.',
+    values: [
+      { t: 'Palabra', d: 'Permanecemos en Jesús al llenar nuestras vidas de Su Palabra, siendo formados por la verdad y la sana doctrina, en lugar de ser desgastados por una religiosidad vacía.' },
+      { t: 'Misión', d: 'Nos movemos hacia los lugares donde la redención aún no ha llegado, extendiendo bendición a los más vulnerables y a los que están lejos de Dios; lo hacemos cultivando una vida generosa, disponibles para las interrupciones, en lugar de quedarnos resguardados tras la comodidad y las barreras culturales.' },
+      { t: 'Espíritu y poder', d: 'Creamos espacio para el Espíritu Santo y caminamos con Él con valentía, sin imponer nuestras agendas, atentos a su voz y dispuestos a obedecer. Ponemos en acción los dones y talentos que nos ha dado para extender su Reino y edificarnos mutuamente.' },
+      { t: 'Comunidad', d: 'Caminamos como una familia espiritual, construyendo relaciones profundas y con propósito. No delegamos el discipulado solo a algunos; más bien, formamos discípulos que hacen discípulos, capacitándolos para acompañarse y guiarse mutuamente mientras siguen a Cristo.' },
+      { t: 'Multiplicación', d: 'No nos conformamos con crecer; anhelamos reproducir lo que Dios está haciendo en nosotros, extendiéndonos hacia nuevas comunidades y desarrollando líderes que continúen la misión.' },
+    ],
+    beliefsKicker: 'Lo que creemos',
+    beliefsTitle: 'Nuestras creencias',
+    beliefsIntro: 'Somos una iglesia evangélica, trinitaria y centrada en el evangelio de Jesucristo. Estas son las verdades que sostienen todo lo que somos y hacemos.',
+    beliefs: [
+      { t: 'La Biblia', d: 'Creemos que la Biblia es la Palabra de Dios, inspirada, infalible y suficiente. Es nuestra autoridad final en todo asunto de fe y conducta.' },
+      { t: 'Dios', d: 'Creemos en un solo Dios eterno, que existe en tres personas: Padre, Hijo y Espíritu Santo. Cada persona es plenamente Dios, distinta en relación pero unida en esencia.' },
+      { t: 'Jesucristo', d: 'Creemos que Jesucristo es el Hijo de Dios, plenamente divino y plenamente humano. Nació de una virgen, vivió sin pecado, murió en la cruz como nuestro sustituto, resucitó al tercer día y volverá en gloria.' },
+      { t: 'El Espíritu Santo', d: 'Creemos que el Espíritu Santo habita en todo creyente, otorga dones para edificar el cuerpo de Cristo y nos capacita para vivir la vida cristiana y cumplir la misión.' },
+      { t: 'El evangelio', d: 'Creemos que todos hemos pecado y estamos separados de Dios. Por su gracia, Dios ofrece salvación a todo aquel que se arrepiente y confía en Jesucristo como Señor y Salvador. Esta salvación es por fe, no por obras.' },
+      { t: 'La iglesia', d: 'Creemos que la iglesia es el pueblo de Dios reunido alrededor de Cristo, local y universal. Está llamada a hacer discípulos, a celebrar el bautismo y la Cena del Señor, y a ser testigo del Reino de Dios en el mundo.' },
+      { t: 'El futuro', d: 'Creemos en el regreso personal y visible de Jesucristo, en la resurrección de los muertos, en el juicio final y en la vida eterna.' },
+    ],
+    leadKicker: 'Liderazgo',
+    leadTitle: 'Quiénes sirven',
+    leadIntro: 'Somos un equipo pequeño con una misión grande. Existimos para servir a las iglesias en casa y a la ciudad de Miami.',
+    leaders: [
+      { n: 'Pablo DiGilio', r: 'Pastor', img: '/img/predicacion-sm.webp' },
+      { n: 'Daniel Tarasiuk', r: 'Liderazgo', img: '' },
+    ],
+    serveTitle: '¿Quieres servir?',
+    serveText: 'Hay un lugar para ti. Cuéntanos tus dones y te ayudamos a encontrar dónde servir.',
+    serveBtn: 'Sirve con nosotros',
+  },
+  en: {
+    title: 'About',
+    description: 'CityChurch Miami is a church of house churches. Learn about our mission, values, beliefs, and leadership.',
+    kicker: 'About us',
+    h1: 'A church of house churches.',
+    lead: 'We are not a traditional church with a single meeting place. We are a network of small communities, house churches, spread across Miami and connected by one faith, one mission, and one Lord.',
+    sub: ['Who we are', 'Values', 'Beliefs', 'Leadership'],
+    missionKicker: 'Who we are',
+    mission: 'We are a church of house churches in Miami, longing to see God work supernaturally in every city through a community of disciples who live out the gospel as a family on mission.',
+    tagline: 'From house to house. From city to city.',
+    valuesKicker: 'What defines us',
+    valuesTitle: 'Our values',
+    valuesIntro: 'These values describe how we try to live together as a community.',
+    values: [
+      { t: 'Word', d: 'We abide in Jesus by filling our lives with His Word, being shaped by truth and sound doctrine instead of being worn down by empty religion.' },
+      { t: 'Mission', d: 'We move toward the places redemption has not yet reached, extending blessing to the most vulnerable and to those far from God. We do this by cultivating generous lives, open to interruptions, instead of staying sheltered behind comfort and cultural barriers.' },
+      { t: 'Spirit and power', d: 'We make room for the Holy Spirit and walk with Him boldly, without imposing our own agendas, attentive to His voice and ready to obey. We put the gifts and talents He has given us to work to extend His Kingdom and build each other up.' },
+      { t: 'Community', d: 'We walk together as a spiritual family, building deep and purposeful relationships. We do not hand discipleship off to a few; instead, we make disciples who make disciples, equipping them to walk with and guide one another as they follow Christ.' },
+      { t: 'Multiplication', d: 'We are not content just to grow; we long to reproduce what God is doing in us, reaching into new communities and raising up leaders who carry the mission forward.' },
+    ],
+    beliefsKicker: 'What we believe',
+    beliefsTitle: 'Our beliefs',
+    beliefsIntro: 'We are an evangelical, Trinitarian church centered on the gospel of Jesus Christ. These are the truths that hold up everything we are and do.',
+    beliefs: [
+      { t: 'The Bible', d: 'We believe the Bible is the Word of God: inspired, infallible, and sufficient. It is our final authority in all matters of faith and life.' },
+      { t: 'God', d: 'We believe in one eternal God who exists in three persons: Father, Son, and Holy Spirit. Each person is fully God, distinct in relationship and united in essence.' },
+      { t: 'Jesus Christ', d: 'We believe Jesus Christ is the Son of God, fully divine and fully human. He was born of a virgin, lived without sin, died on the cross as our substitute, rose on the third day, and will return in glory.' },
+      { t: 'The Holy Spirit', d: 'We believe the Holy Spirit lives in every believer, gives gifts to build up the body of Christ, and empowers us to live the Christian life and fulfill the mission.' },
+      { t: 'The gospel', d: 'We believe all have sinned and are separated from God. By His grace, God offers salvation to everyone who repents and trusts in Jesus Christ as Lord and Savior. This salvation is by faith, not by works.' },
+      { t: 'The church', d: 'We believe the church is the people of God gathered around Christ, both local and universal. It is called to make disciples, to celebrate baptism and the Lord’s Supper, and to bear witness to the Kingdom of God in the world.' },
+      { t: 'The future', d: 'We believe in the personal and visible return of Jesus Christ, the resurrection of the dead, the final judgment, and eternal life.' },
+    ],
+    leadKicker: 'Leadership',
+    leadTitle: 'Who serves',
+    leadIntro: 'We are a small team with a big mission. We exist to serve our house churches and the city of Miami.',
+    leaders: [
+      { n: 'Pablo DiGilio', r: 'Pastor', img: '/img/predicacion-sm.webp' },
+      { n: 'Daniel Tarasiuk', r: 'Leadership', img: '' },
+    ],
+    serveTitle: 'Want to serve?',
+    serveText: 'There is a place for you. Tell us about your gifts and we will help you find where to serve.',
+    serveBtn: 'Serve with us',
+  },
+}[lang];
+const ids = ['quienes-somos', 'valores', 'creencias', 'liderazgo'];
+---
+<Base lang={lang} page="about" title={copy.title} description={copy.description}>
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/bienvenida" alt={lang === 'es' ? 'La iglesia saludándose después del servicio' : 'The church greeting each other after the service'} />
+
+  <nav class="subnav" aria-label={copy.kicker}>
+    <div class="wrap"><ul>{copy.sub.map((s, i) => <li><a href={`#${ids[i]}`}>{s}</a></li>)}</ul></div>
+  </nav>
+
+  <section id="quienes-somos" class="section section--teal">
+    <div class="wrap">
+      <span class="kicker">{copy.missionKicker}</span>
+      <p class="big">{copy.mission}</p>
+      <p class="tagline">{copy.tagline}</p>
+    </div>
+  </section>
+
+  <section id="valores" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.valuesKicker}</span>
+        <h2>{copy.valuesTitle}</h2>
+        <p class="lead">{copy.valuesIntro}</p>
+      </div>
+      <div class="values">
+        {copy.values.map((v, i) => (
+          <article class="card value">
+            <span class="num">0{i + 1}</span>
+            <h3>{v.t}</h3>
+            <p class="muted">{v.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="creencias" class="section section--white">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.beliefsKicker}</span>
+        <h2>{copy.beliefsTitle}</h2>
+        <p class="lead">{copy.beliefsIntro}</p>
+      </div>
+      <dl class="beliefs">
+        {copy.beliefs.map((b) => (<div><dt>{b.t}</dt><dd>{b.d}</dd></div>))}
+      </dl>
+    </div>
+  </section>
+
+  <section id="liderazgo" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.leadKicker}</span>
+        <h2>{copy.leadTitle}</h2>
+        <p class="lead">{copy.leadIntro}</p>
+      </div>
+      <div class="leaders">
+        {copy.leaders.map((p) => (
+          <figure class="leader">
+            <div class="avatar">{p.img ? <img src={p.img} alt={p.n} loading="lazy" width="300" height="300" /> : <span aria-hidden="true">{p.n.split(' ').map((w) => w[0]).join('')}</span>}</div>
+            <figcaption><strong>{p.n}</strong><span>{p.r}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--orange">
+    <div class="wrap cta">
+      <div><h2>{copy.serveTitle}</h2><p class="lead">{copy.serveText}</p></div>
+      <a class="btn" href={links.serve}>{copy.serveBtn}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .subnav { position: sticky; top: 76px; z-index: 40; background: var(--white); border-bottom: 1px solid var(--line); }
+  .subnav ul { display: flex; gap: 1.75rem; overflow-x: auto; list-style: none; margin: 0; padding: 0.9rem 0; }
+  .subnav a { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; white-space: nowrap; }
+  .subnav a:hover { color: var(--orange-ink); }
+  section[id] { scroll-margin-top: 140px; }
+  .big { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--step-3); line-height: 1; max-width: 24ch; }
+  .tagline { font-family: var(--scripture); font-style: italic; font-size: var(--step-1); color: var(--stone); margin-top: 1.5rem; }
+  .values { display: grid; gap: var(--gap); }
+  @media (min-width: 760px) { .values { grid-template-columns: repeat(2, 1fr); } .value:last-child { grid-column: 1 / -1; background: var(--teal); color: var(--cream); border: 0; } .value:last-child .muted { color: rgba(250,246,240,.85); } }
+  .beliefs { display: grid; gap: 0; margin: 0; border-top: 1px solid var(--line); }
+  .beliefs > div { display: grid; gap: 0.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--line); }
+  @media (min-width: 760px) { .beliefs > div { grid-template-columns: 260px 1fr; gap: 2rem; } }
+  .beliefs dt { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--step-1); color: var(--teal); }
+  .beliefs dd { margin: 0; max-width: 62ch; }
+  .leaders { display: flex; flex-wrap: wrap; gap: 2.5rem; }
+  .leader { margin: 0; text-align: center; width: 200px; }
+  .avatar { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem; background: var(--teal); color: var(--cream); display: grid; place-items: center; font-family: var(--display); font-weight: 900; font-size: 3.5rem; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .leader strong { display: block; font-size: var(--step-1); }
+  .leader figcaption span { display: block; font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange-ink); font-size: var(--step--1); }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+</style>

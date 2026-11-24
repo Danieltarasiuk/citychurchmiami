@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { links, routes, sunday, type Lang } from '../data/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    title: '¿Primera vez?',
+    description: `¿Primera vez en CityChurch Miami? Domingos a las ${sunday.time} en ${sunday.place}, Doral. Esto es lo que puedes esperar.`,
+    kicker: '¿Primera vez?',
+    h1: 'Nos alegra que estés aquí.',
+    lead: 'Esto es lo que puedes esperar un domingo. Si quieres, avísanos que vienes y te esperamos en la puerta para presentarte a alguien.',
+    tell: 'Avísanos que vienes',
+    directions: 'Cómo llegar',
+    faq: [
+      { t: 'Cuándo y dónde', d: `Domingos a las ${sunday.time} en ${sunday.place}, ${sunday.address}.` },
+      { t: 'Cuánto dura', d: 'Alrededor de 90 minutos: adoración, un mensaje de la Biblia y tiempo para conocernos.' },
+      { t: 'En qué idioma', d: 'El servicio es en español. Si hablas inglés, avísanos: estamos comenzando un grupo en inglés y nos encantaría conocerte.' },
+      { t: 'Qué ponerte', d: 'Lo que te haga sentir cómodo. Vas a ver de todo, desde jeans hasta camisa de botones.' },
+      { t: 'Niños', d: 'CityChurch Kids tiene un espacio seguro para ellos durante el servicio. Puedes registrarlos antes para agilizar tu llegada.', href: links.kidsEs, l: 'Registra a tus niños' },
+      { t: 'No tienes que tener todo resuelto', d: 'Ven tal como estás, con tus preguntas y tus dudas. Nadie te va a pedir nada. Solo ven y escucha.' },
+    ],
+    afterKicker: 'Después del domingo',
+    afterTitle: 'El siguiente paso es una mesa.',
+    afterText: 'La vida de la iglesia sucede durante la semana en las iglesias en casa. Cuando estés listo, te ayudamos a encontrar la más cercana a ti.',
+    afterBtn: 'Iglesias en casa',
+  },
+  en: {
+    title: 'First time?',
+    description: `First time at CityChurch Miami? Sundays at ${sunday.time} at ${sunday.place}, Doral. Here is what to expect.`,
+    kicker: 'First time?',
+    h1: 'We’re glad you’re here.',
+    lead: 'Here is what you can expect on a Sunday. If you’d like, let us know you’re coming and we’ll meet you at the door and introduce you to someone.',
+    tell: 'Let us know you’re coming',
+    directions: 'Directions',
+    faq: [
+      { t: 'When and where', d: `Sundays at ${sunday.time} at ${sunday.place}, ${sunday.address}.` },
+      { t: 'How long', d: 'About 90 minutes: worship, a message from the Bible, and time to get to know each other.' },
+      { t: 'Language', d: 'Our Sunday service is in Spanish. If you speak English, let us know: we are starting an English gathering and would love to meet you.' },
+      { t: 'What to wear', d: 'Whatever makes you comfortable. You will see everything from jeans to button-downs.' },
+      { t: 'Kids', d: 'CityChurch Kids has a safe space for them during the service. You can register ahead of time to make arrival easier.', href: links.kidsEn, l: 'Register your kids' },
+      { t: 'You don’t need to have it all figured out', d: 'Come as you are, with your questions and doubts. No one will ask anything of you. Just come and listen.' },
+    ],
+    afterKicker: 'After Sunday',
+    afterTitle: 'The next step is a table.',
+    afterText: 'Church life happens during the week in our house churches. When you’re ready, we’ll help you find the one closest to you.',
+    afterBtn: 'House churches',
+  },
+}[lang];
+---
+<Base lang={lang} page="first" title={copy.title} description={copy.description} image="/img/bienvenida.webp">
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/bienvenida" alt={lang === 'es' ? 'Personas de la iglesia recibiendo a otros en la entrada' : 'People from the church welcoming others at the entrance'}>
+    <div class="btn-row">
+      <a class="btn btn--orange" href={links.stayConnected}>{copy.tell}</a>
+      <a class="btn btn--ghost" href={links.maps}>{copy.directions}</a>
+    </div>
+  </PageHero>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <dl class="faq">
+        {copy.faq.map((f) => (
+          <div>
+            <dt>{f.t}</dt>
+            <dd>{f.d}{f.href && <><br /><a class="arrow-link" href={f.href}>{f.l}</a></>}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="map">
+        <iframe title={sunday.place} loading="lazy" referrerpolicy="no-referrer-when-downgrade" src={`https://www.google.com/maps?q=${encodeURIComponent(sunday.place + ', ' + sunday.address)}&output=embed`}></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--teal">
+    <div class="wrap split">
+      <div>
+        <span class="kicker">{copy.afterKicker}</span>
+        <h2>{copy.afterTitle}</h2>
+        <p class="lead">{copy.afterText}</p>
+        <div class="btn-row"><a class="btn btn--light" href={routes.houses[lang]}>{copy.afterBtn}</a></div>
+      </div>
+      <div class="photo ratio-4x3"><img src="/img/servicio-sm.webp" alt={lang === 'es' ? 'La iglesia adorando un domingo' : 'The church worshiping on a Sunday'} loading="lazy" width="900" height="720" /></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .faq { display: grid; gap: 0; margin: 0; border-top: 1px solid var(--line); }
+  .faq > div { display: grid; gap: 0.5rem; padding: 1.6rem 0; border-bottom: 1px solid var(--line); }
+  @media (min-width: 760px) { .faq > div { grid-template-columns: 320px 1fr; gap: 2rem; } }
+  .faq dt { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--step-1); line-height: 1.05; }
+  .faq dd { margin: 0; max-width: 60ch; }
+  .faq .arrow-link { display: inline-block; margin-top: 0.75rem; }
+  .map { border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 7; min-height: 320px; background: var(--stone); }
+  .map iframe { width: 100%; height: 100%; border: 0; }
+</style>

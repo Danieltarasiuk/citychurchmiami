@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { links, playlists, playlistEmbed, playlistUrl, type Lang } from '../data/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    title: 'Enseñanza',
+    description: 'Mensajes de CityChurch Miami. Enseñamos la Biblia de manera simple y clara, libro por libro.',
+    kicker: 'Enseñanza',
+    h1: 'La Biblia, de manera simple y clara.',
+    lead: 'Cada semana enseñamos la Biblia de manera simple y clara. No necesitas tener todo resuelto. Solo ven y escucha.',
+    currentKicker: 'Serie actual',
+    currentText: 'Estamos recorriendo la carta de Pablo a la iglesia de Corinto: una iglesia real, con problemas reales, a la que Dios llama de vuelta al evangelio.',
+    watch: 'Ver la serie',
+    channel: 'Canal de YouTube',
+    recentKicker: 'Todos los mensajes',
+    recentTitle: 'Mensajes recientes',
+    previousKicker: 'Series anteriores',
+    previousTitle: 'Sigue aprendiendo',
+    open: 'Ver en YouTube',
+  },
+  en: {
+    title: 'Teaching',
+    description: 'Messages from CityChurch Miami. We teach the Bible simply and clearly, book by book. Messages are in Spanish.',
+    kicker: 'Teaching',
+    h1: 'The Bible, simple and clear.',
+    lead: 'Every week we teach the Bible simply and clearly. You don’t need to have it all figured out. Just come and listen. Our messages are currently in Spanish.',
+    currentKicker: 'Current series',
+    currentText: 'We are working through Paul’s letter to the church in Corinth: a real church with real problems, called by God back to the gospel.',
+    watch: 'Watch the series',
+    channel: 'YouTube channel',
+    recentKicker: 'All messages',
+    recentTitle: 'Recent messages',
+    previousKicker: 'Previous series',
+    previousTitle: 'Keep learning',
+    open: 'Watch on YouTube',
+  },
+}[lang];
+---
+<Base lang={lang} page="teaching" title={copy.title} description={copy.description} image="/img/predicacion.webp">
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/predicacion" alt={lang === 'es' ? 'Predicación un domingo' : 'Preaching on a Sunday'} />
+
+  <section class="section section--teal">
+    <div class="wrap split split--wide-left">
+      <div class="video">
+        <iframe src={playlistEmbed(playlists.current.id)} title={playlists.current.name} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div>
+        <span class="kicker">{copy.currentKicker}</span>
+        <h2>{playlists.current.name}</h2>
+        <p>{copy.currentText}</p>
+        <div class="btn-row">
+          <a class="btn btn--orange" href={playlistUrl(playlists.current.id)}>{copy.watch}</a>
+          <a class="btn btn--ghost" href={links.youtube}>{copy.channel}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.recentKicker}</span>
+        <h2>{copy.recentTitle}</h2>
+      </div>
+      <div class="video wide">
+        <iframe src={playlistEmbed(playlists.sermons)} title={copy.recentTitle} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.previousKicker}</span>
+        <h2>{copy.previousTitle}</h2>
+      </div>
+      <div class="series">
+        {playlists.previous.map((s) => (
+          <a class="card serie" href={playlistUrl(s.id)}>
+            <h3>{s.name}</h3>
+            <span class="arrow-link">{copy.open}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .wide { max-width: 980px; }
+  .series { display: grid; gap: 1rem; }
+  @media (min-width: 640px) { .series { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .series { grid-template-columns: repeat(3, 1fr); } }
+  .serie { text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; min-height: 170px; transition: transform 0.15s ease, border-color 0.15s ease; }
+  .serie:hover { transform: translateY(-3px); border-color: var(--orange); }
+  .serie h3 { font-size: var(--step-2); }
+  .serie .arrow-link { align-self: flex-start; }
+</style>

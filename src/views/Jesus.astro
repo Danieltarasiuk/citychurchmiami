@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { links, routes, type Lang } from '../data/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    title: 'Jesús',
+    description: 'No una religión. Una persona. Conoce a Jesús tal como aparece en los evangelios.',
+    kicker: 'Jesús',
+    h1: 'No una religión. Una persona.',
+    lead: 'Quizás creciste oyendo su nombre en la iglesia, o quizás apenas lo estás encontrando. De cualquier manera, queremos presentarte a Jesús mismo, tal como aparece en los evangelios: real, presente y más relevante de lo que imaginas.',
+    parts: [
+      {
+        label: '¿Quién es Él?',
+        h: 'Más que un maestro. Más que un ejemplo.',
+        p: ['Jesús de Nazaret nació en el siglo primero en un pueblo pequeño del Medio Oriente. Vivió sin pecado, enseñó con autoridad, sanó enfermos, resucitó muertos y afirmó ser Dios hecho hombre. No era un filósofo más. No era solo un hombre bueno. Sus propias palabras no nos dejan esa opción.'],
+        verse: 'Yo soy el camino, la verdad y la vida; nadie viene al Padre sino por Mí.', ref: 'Juan 14:6 (NBLA)',
+        after: 'La pregunta que Él mismo hizo sigue abierta para cada persona: «Y ustedes, ¿quién dicen que soy Yo?» (Mateo 16:15)',
+      },
+      {
+        label: 'El problema',
+        h: 'Algo está roto. Y lo sabemos.',
+        p: ['No hace falta convencer a nadie de que el mundo no está bien. Lo vemos afuera y lo sentimos adentro. La Biblia tiene una palabra para eso: pecado. No es un término religioso para hacer sentir mal a la gente. Es el diagnóstico honesto de una ruptura real: entre nosotros y Dios, entre nosotros y los demás, y entre nosotros y quienes fuimos creados para ser.', 'Esa ruptura tiene consecuencias. Y ninguno de nosotros puede repararla por su cuenta: ni con esfuerzo, ni con religión, ni con buenas intenciones.'],
+      },
+      {
+        label: 'La solución',
+        h: 'Lo que nosotros no podíamos hacer, Él lo hizo.',
+        p: ['Dios no observó nuestra situación desde la distancia. Entró en ella. Jesús vivió la vida que nosotros debíamos vivir, perfecta y sin pecado, y murió la muerte que nosotros merecíamos. En la cruz cargó con el peso de todo lo que nos separa de Dios. Y tres días después resucitó, mostrando que tiene poder sobre la muerte misma.', 'Eso es el evangelio, la buena noticia. No es que Dios espera que seamos mejores. Es que Jesús ya hizo lo que se necesitaba, y nos invita a recibirlo.'],
+        dark: true,
+      },
+      {
+        label: '¿Qué significa creer?',
+        h: 'No es una decisión religiosa. Es una rendición.',
+        p: ['Creer en Jesús no es añadir una práctica espiritual a tu vida ni intentar ser mejor persona. Es reconocer que estás separado de Dios, que no puedes arreglarlo solo, y confiar completamente en lo que Jesús hizo por ti.', 'La Biblia lo llama arrepentimiento y fe: darte la vuelta de lo que te aleja de Dios y poner tu confianza en Jesús como Señor y Salvador. No es una fórmula. Es el inicio de una relación real con el Dios que te creó y te ama.'],
+      },
+    ],
+    nextKicker: '¿Y ahora qué?',
+    nextTitle: 'No tienes que resolverlo solo.',
+    nextText: 'Si algo de esto resonó contigo, si tienes preguntas o dudas, o simplemente quieres saber más, nos encantaría conversar contigo.',
+    cards: [
+      { t: '¿Tienes preguntas?', d: 'Escríbenos. Hay personas reales al otro lado, dispuestas a conversar sin juzgar.', l: 'Escríbenos', href: links.stayConnected },
+      { t: 'Conoce nuestra comunidad', d: 'Una iglesia en casa puede ser el lugar donde la fe cobra vida. Encuentra una cerca de ti.', l: 'Iglesias en casa', href: routes.houses.es },
+      { t: 'Ven un domingo', d: 'Escucha la Biblia enseñada de manera simple y clara. Ven tal como estás.', l: 'Planea tu visita', href: routes.first.es },
+    ],
+  },
+  en: {
+    title: 'Jesus',
+    description: 'Not a religion. A person. Meet Jesus as He appears in the Gospels.',
+    kicker: 'Jesus',
+    h1: 'Not a religion. A person.',
+    lead: 'Maybe you grew up hearing His name in church, or maybe you are just now coming across Him. Either way, we want to introduce you to Jesus Himself, as He appears in the Gospels: real, present, and more relevant than you imagine.',
+    parts: [
+      {
+        label: 'Who is He?',
+        h: 'More than a teacher. More than an example.',
+        p: ['Jesus of Nazareth was born in the first century in a small town in the Middle East. He lived without sin, taught with authority, healed the sick, raised the dead, and claimed to be God made man. He was not just another philosopher. He was not merely a good man. His own words do not leave us that option.'],
+        verse: 'I am the way, and the truth, and the life. No one comes to the Father except through me.', ref: 'John 14:6 (ESV)',
+        after: 'The question He asked is still open for every person: “But who do you say that I am?” (Matthew 16:15)',
+      },
+      {
+        label: 'The problem',
+        h: 'Something is broken. And we know it.',
+        p: ['No one has to be convinced that the world is not right. We see it around us and we feel it inside. The Bible has a word for that: sin. It is not a religious term meant to make people feel bad. It is an honest diagnosis of a real break: between us and God, between us and others, and between us and who we were created to be.', 'That break has consequences. And none of us can repair it on our own: not with effort, not with religion, not with good intentions.'],
+      },
+      {
+        label: 'The answer',
+        h: 'What we could not do, He did.',
+        p: ['God did not watch our situation from a distance. He stepped into it. Jesus lived the life we should have lived, perfect and without sin, and died the death we deserved. On the cross He carried the weight of everything that separates us from God. Three days later He rose again, showing He has power over death itself.', 'That is the gospel, the good news. It is not that God is waiting for us to be better. It is that Jesus already did what was needed, and He invites us to receive it.'],
+        dark: true,
+      },
+      {
+        label: 'What does it mean to believe?',
+        h: 'Not a religious decision. A surrender.',
+        p: ['Believing in Jesus is not adding a spiritual practice to your life or trying to be a better person. It is recognizing that you are separated from God, that you cannot fix it yourself, and trusting completely in what Jesus did for you.', 'The Bible calls it repentance and faith: turning away from what pulls you from God and putting your trust in Jesus as Lord and Savior. It is not a formula. It is the beginning of a real relationship with the God who made you and loves you.'],
+      },
+    ],
+    nextKicker: 'What now?',
+    nextTitle: 'You don’t have to figure it out alone.',
+    nextText: 'If any of this resonated with you, if you have questions or doubts, or you just want to know more, we would love to talk with you.',
+    cards: [
+      { t: 'Have questions?', d: 'Write to us. There are real people on the other side, ready to talk without judgment.', l: 'Write to us', href: links.stayConnected },
+      { t: 'Meet our community', d: 'A house church can be the place where faith comes alive. Find one near you.', l: 'House churches', href: routes.houses.en },
+      { t: 'Come on a Sunday', d: 'Hear the Bible taught simply and clearly. Come as you are.', l: 'Plan your visit', href: routes.first.en },
+    ],
+  },
+}[lang];
+---
+<Base lang={lang} page="jesus" title={copy.title} description={copy.description} image="/img/biblia-cafe.webp">
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} />
+
+  {copy.parts.map((part, i) => (
+    <section class={`section ${part.dark ? 'section--teal' : i % 2 ? 'section--white' : ''}`}>
+      <div class="wrap part">
+        <div class="side">
+          <span class="n">0{i + 1}</span>
+          <span class="kicker">{part.label}</span>
+        </div>
+        <div>
+          <h2>{part.h}</h2>
+          {part.p.map((t) => <p>{t}</p>)}
+          {part.verse && <blockquote class="scripture">{lang === 'es' ? `«${part.verse}»` : `\u201c${part.verse}\u201d`}<cite>{part.ref}</cite></blockquote>}
+          {part.after && <p>{part.after}</p>}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.nextKicker}</span>
+        <h2>{copy.nextTitle}</h2>
+        <p class="lead">{copy.nextText}</p>
+      </div>
+      <div class="grid-3">
+        {copy.cards.map((c) => (
+          <article class="card">
+            <h3>{c.t}</h3>
+            <p class="muted">{c.d}</p>
+            <a class="arrow-link" href={c.href}>{c.l}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .part { display: grid; gap: 1.5rem; }
+  @media (min-width: 860px) { .part { grid-template-columns: 240px 1fr; gap: 4rem; } }
+  .n { display: block; font-family: var(--display); font-weight: 900; font-size: clamp(4rem, 8vw, 7rem); line-height: 0.85; color: var(--orange); }
+  .section--teal .n { color: var(--orange); }
+  .side .kicker { margin-top: 1rem; }
+  h2 { max-width: 16ch; }
+</style>

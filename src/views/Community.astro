@@ -1,0 +1,134 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { links, routes, type Lang } from '../data/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    title: 'Comunidad',
+    description: 'La fe se vive en familia. Grupos, ministerios y socios con quienes servimos en Miami.',
+    kicker: 'Comunidad',
+    h1: 'La fe se vive en familia.',
+    lead: 'En CityChurch no solo te invitamos a un servicio. Te invitamos a una vida en común: espacios donde crecer, socios con quienes servir y momentos para compartir.',
+    groupsKicker: 'Espacios para crecer',
+    groupsTitle: 'Un lugar donde pertenecer.',
+    groupsIntro: 'Además de las iglesias en casa, tenemos espacios donde puedes crecer junto a otros que están en el mismo camino.',
+    groups: [
+      { t: 'Hombres', d: 'Un espacio donde los hombres se afilan mutuamente, crecen en carácter y se forman como líderes siervos en el hogar, en el trabajo y en la misión.' },
+      { t: 'Mujeres', d: 'Un lugar donde las mujeres pueden ser honestas, crecer espiritualmente y encontrar comunidad genuina, más allá de la superficie.' },
+      { t: 'City Youth', d: 'Para jóvenes que están construyendo su fe, su identidad y sus amistades sobre la Roca. Nos reunimos viernes por medio en la noche.' },
+      { t: 'CityChurch Kids', d: 'Un espacio seguro y alegre para que los niños conozcan a Jesús cada domingo durante el servicio.', href: links.kidsEs, l: 'Registra a tus niños' },
+    ],
+    connect: 'Conéctate',
+    partnersKicker: 'Misión en la ciudad',
+    partnersTitle: 'Somos una iglesia en misión.',
+    partnersIntro: 'La misión no termina en nuestras reuniones. Se extiende a los más vulnerables de nuestra ciudad. Servimos junto a socios que comparten nuestra visión de ver a Dios obrar en Miami.',
+    partners: [
+      { t: 'One More Child', d: 'Sirve a niños y familias vulnerables en Miami con servicios centrados en Cristo: cuidado de crianza temporal, apoyo a madres solteras, lucha contra la trata de personas y el hambre infantil.', href: 'https://onemorechild.org/' },
+      { t: 'Heartbeat of Miami', d: 'Acompaña a mujeres y familias que enfrentan un embarazo inesperado, con ayuda práctica y esperanza.', href: 'https://heartbeatofmiami.org/' },
+      { t: 'CarePortal', d: 'Conecta a la iglesia con necesidades reales de niños y familias en nuestra comunidad, reportadas por trabajadores sociales.', href: 'https://www.careportal.org/' },
+    ],
+    visit: 'Conoce más',
+    serveTitle: 'Sirve con nosotros.',
+    serveText: 'Cada persona tiene dones para edificar a la iglesia. Cuéntanos dónde te gustaría servir.',
+    serveBtn: 'Quiero servir',
+    housesBtn: 'Iglesias en casa',
+  },
+  en: {
+    title: 'Community',
+    description: 'Faith is lived as a family. Groups, ministries, and the partners we serve with in Miami.',
+    kicker: 'Community',
+    h1: 'Faith is lived as a family.',
+    lead: 'At CityChurch we don’t just invite you to a service. We invite you into a shared life: places to grow, partners to serve with, and moments to share.',
+    groupsKicker: 'Places to grow',
+    groupsTitle: 'A place to belong.',
+    groupsIntro: 'Along with our house churches, there are spaces where you can grow alongside others who are on the same road.',
+    groups: [
+      { t: 'Men', d: 'A space where men sharpen one another, grow in character, and are formed as servant leaders at home, at work, and on mission.' },
+      { t: 'Women', d: 'A place where women can be honest, grow spiritually, and find genuine community beneath the surface.' },
+      { t: 'City Youth', d: 'For young people building their faith, identity, and friendships on the Rock. We meet every other Friday night.' },
+      { t: 'CityChurch Kids', d: 'A safe, joyful space where kids meet Jesus every Sunday during the service.', href: links.kidsEn, l: 'Register your kids' },
+    ],
+    connect: 'Connect',
+    partnersKicker: 'Mission in the city',
+    partnersTitle: 'We are a church on mission.',
+    partnersIntro: 'Mission does not end at our gatherings. It reaches the most vulnerable in our city. We serve alongside partners who share our vision of seeing God at work in Miami.',
+    partners: [
+      { t: 'One More Child', d: 'Serves vulnerable children and families in Miami with Christ-centered care: foster care, support for single moms, and fighting human trafficking and child hunger.', href: 'https://onemorechild.org/' },
+      { t: 'Heartbeat of Miami', d: 'Walks with women and families facing an unexpected pregnancy, with practical help and hope.', href: 'https://heartbeatofmiami.org/' },
+      { t: 'CarePortal', d: 'Connects the church with real needs of children and families in our community, as reported by caseworkers.', href: 'https://www.careportal.org/' },
+    ],
+    visit: 'Learn more',
+    serveTitle: 'Serve with us.',
+    serveText: 'Everyone has gifts to build up the church. Tell us where you would like to serve.',
+    serveBtn: 'I want to serve',
+    housesBtn: 'House churches',
+  },
+}[lang];
+---
+<Base lang={lang} page="community" title={copy.title} description={copy.description} image="/img/familia-parque.webp">
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/familia-parque" alt={lang === 'es' ? 'Familias de la iglesia en un picnic en el parque' : 'Church families at a picnic in the park'}>
+    <div class="btn-row"><a class="btn btn--ghost" href={routes.houses[lang]}>{copy.housesBtn}</a></div>
+  </PageHero>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.groupsKicker}</span>
+        <h2>{copy.groupsTitle}</h2>
+        <p class="lead">{copy.groupsIntro}</p>
+      </div>
+      <div class="groups">
+        {copy.groups.map((g) => (
+          <article class="card">
+            <h3>{g.t}</h3>
+            <p class="muted">{g.d}</p>
+            <a class="arrow-link" href={g.href ?? links.stayConnected}>{g.l ?? copy.connect}</a>
+          </article>
+        ))}
+      </div>
+      <div class="photo-row">
+        <div class="photo ratio-4x3"><img src="/img/ninos-sm.webp" alt={lang === 'es' ? 'Niños de CityChurch Kids con sus manualidades' : 'CityChurch Kids with their crafts'} loading="lazy" width="900" height="900" /></div>
+        <div class="photo ratio-4x3"><img src="/img/amigos-sm.webp" alt={lang === 'es' ? 'Hombres de la iglesia conversando con café' : 'Men from the church talking over coffee'} loading="lazy" width="900" height="720" /></div>
+        <div class="photo ratio-4x3"><img src="/img/ninos-piscina-sm.webp" alt={lang === 'es' ? 'Niños compartiendo paletas en una reunión' : 'Kids sharing popsicles at a gathering'} loading="lazy" width="900" height="678" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--teal">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.partnersKicker}</span>
+        <h2>{copy.partnersTitle}</h2>
+        <p class="lead">{copy.partnersIntro}</p>
+      </div>
+      <div class="grid-3">
+        {copy.partners.map((p) => (
+          <article class="card">
+            <h3>{p.t}</h3>
+            <p class="muted">{p.d}</p>
+            <a class="arrow-link" href={p.href} rel="noopener">{copy.visit}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--orange">
+    <div class="wrap cta">
+      <div><h2>{copy.serveTitle}</h2><p class="lead">{copy.serveText}</p></div>
+      <a class="btn" href={links.serve}>{copy.serveBtn}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .groups { display: grid; gap: var(--gap); }
+  @media (min-width: 760px) { .groups { grid-template-columns: repeat(2, 1fr); } }
+  .groups h3, .grid-3 h3 { font-size: var(--step-2); }
+  .photo-row { display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); margin-top: var(--gap); }
+  @media (max-width: 640px) { .photo-row { grid-template-columns: 1fr 1fr; } .photo-row > :last-child { display: none; } }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+</style>

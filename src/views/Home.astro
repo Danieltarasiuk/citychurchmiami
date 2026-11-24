@@ -1,0 +1,214 @@
+---
+import Base from '../layouts/Base.astro';
+import { links, routes, sunday, playlists, playlistEmbed, type Lang } from '../data/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    title: 'CityChurch Miami | Una iglesia de iglesias en casa en Doral',
+    description: 'Iglesia cristiana en español en Doral, Miami. Nos reunimos los domingos a las 10 AM en John I. Smith K-8 y en iglesias en casa durante la semana. Ven tal como estás.',
+    heroKicker: `Domingos ${sunday.time} · Doral, Miami`,
+    heroTitle: ['Una iglesia', 'de iglesias', 'en casa.'],
+    heroLead: 'Somos una familia de discípulos de Jesús que se reúne cada semana en hogares por toda la ciudad, y los domingos como una sola iglesia.',
+    heroVerse: 'Y todos los días, en el templo y de casa en casa, no cesaban de enseñar y proclamar el evangelio de Jesús como el Cristo.',
+    heroRef: 'Hechos 5:42 (NBLA)',
+    plan: '¿Primera vez? Planea tu visita',
+    houses: 'Encuentra una iglesia en casa',
+    missionKicker: 'Nuestra misión',
+    mission: 'Somos una iglesia de iglesias en casa en Miami, con el anhelo de ver a Dios obrar de manera sobrenatural en cada ciudad, por medio de una comunidad de discípulos que viven el evangelio como una familia en misión.',
+    aboutLink: 'Conoce quiénes somos',
+    sundayKicker: 'Los domingos',
+    sundayTitle: 'Una sola iglesia, reunida.',
+    sundayText: 'Cada domingo las iglesias en casa se juntan para adorar, escuchar la Palabra y celebrar lo que Dios está haciendo. El servicio es en español y CityChurch Kids tiene un espacio para los niños.',
+    sundayWhen: 'Cuándo',
+    sundayWhere: 'Dónde',
+    directions: 'Cómo llegar',
+    sermonKicker: 'Último mensaje',
+    sermonTitle: 'La Biblia, de manera simple y clara.',
+    sermonText: `Estamos predicando la serie ${playlists.current.name}. Puedes ver los mensajes en YouTube cuando quieras.`,
+    allSermons: 'Ver todos los mensajes',
+    housesKicker: 'Iglesias en casa',
+    housesTitle: 'La iglesia más cercana a ti es la tuya.',
+    housesText: 'Durante la semana nos reunimos en hogares para compartir una comida, orar y abrir la Biblia juntos. No estamos organizados por edad ni etapa de vida: cada casa es una mezcla de personas distintas que crecen juntas y son enviadas juntas a su propio vecindario.',
+    housesBtn: 'Únete a una iglesia en casa',
+    housesMore: 'Cómo funcionan',
+    pathKicker: 'Tu camino',
+    pathTitle: '¿Dónde comienzas?',
+    steps: [
+      { t: 'Conoce a Jesús', d: 'Jesús es el centro de todo lo que creemos. Empieza aquí si estás explorando la fe.', href: routes.jesus.es, l: 'Aprende más' },
+      { t: 'Ven un domingo', d: 'Reúnete con nosotros cualquier domingo. Ven tal como estás; todos son bienvenidos.', href: routes.first.es, l: 'Qué esperar' },
+      { t: 'Únete a una casa', d: 'Encuentra una comunidad cerca de ti. La vida en familia lo cambia todo.', href: routes.houses.es, l: 'Iglesias en casa' },
+    ],
+    ctaTitle: 'Mantente conectado.',
+    ctaText: 'Déjanos tus datos y te escribimos personalmente. Te contamos lo que viene y te ayudamos a dar el siguiente paso.',
+    ctaBtn: 'Mantente conectado',
+  },
+  en: {
+    title: 'CityChurch Miami | A church of house churches in Doral',
+    description: 'A Christian church in Doral, Miami. We gather Sundays at 10 AM at John I. Smith K-8 (in Spanish) and in house churches across the city during the week. Come as you are.',
+    heroKicker: `Sundays ${sunday.time} · Doral, Miami`,
+    heroTitle: ['A church', 'of house', 'churches.'],
+    heroLead: 'We are a family of disciples of Jesus who meet every week in homes across the city, and on Sundays as one church.',
+    heroVerse: 'And every day, in the temple and from house to house, they did not cease teaching and preaching that the Christ is Jesus.',
+    heroRef: 'Acts 5:42 (ESV)',
+    plan: 'First time? Plan your visit',
+    houses: 'Find a house church',
+    missionKicker: 'Our mission',
+    mission: 'We are a church of house churches in Miami, longing to see God work supernaturally in every city through a community of disciples who live out the gospel as a family on mission.',
+    aboutLink: 'Who we are',
+    sundayKicker: 'Sundays',
+    sundayTitle: 'One church, gathered.',
+    sundayText: 'Every Sunday our house churches come together to worship, hear the Word, and celebrate what God is doing. The service is in Spanish, and CityChurch Kids has a space for children.',
+    sundayWhen: 'When',
+    sundayWhere: 'Where',
+    directions: 'Directions',
+    sermonKicker: 'Latest message',
+    sermonTitle: 'The Bible, simple and clear.',
+    sermonText: `We are preaching through ${playlists.current.name} (1 Corinthians). Watch the messages on YouTube anytime.`,
+    allSermons: 'All messages',
+    housesKicker: 'House churches',
+    housesTitle: 'The church closest to you is yours.',
+    housesText: 'During the week we meet in homes to share a meal, pray, and open the Bible together. We are not organized by age or life stage: every house is a mix of different people growing together and sent together into their own neighborhood.',
+    housesBtn: 'Join a house church',
+    housesMore: 'How they work',
+    pathKicker: 'Your path',
+    pathTitle: 'Where do you start?',
+    steps: [
+      { t: 'Meet Jesus', d: 'Jesus is the center of everything we believe. Start here if you are exploring faith.', href: routes.jesus.en, l: 'Learn more' },
+      { t: 'Come on a Sunday', d: 'Join us any Sunday. Come as you are; everyone is welcome.', href: routes.first.en, l: 'What to expect' },
+      { t: 'Join a house', d: 'Find a community near you. Life together changes everything.', href: routes.houses.en, l: 'House churches' },
+    ],
+    ctaTitle: 'Stay connected.',
+    ctaText: 'Leave us your info and we will reach out personally. We will tell you what is coming up and help you take your next step.',
+    ctaBtn: 'Stay connected',
+  },
+}[lang];
+---
+<Base lang={lang} page="home" title={copy.title} description={copy.description}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <span class="kicker">{copy.heroKicker}</span>
+        <h1>{copy.heroTitle.map((l, i) => <span class={i === 2 ? 'accent' : ''}>{l}<br /></span>)}</h1>
+        <p class="lead">{copy.heroLead}</p>
+        <div class="btn-row">
+          <a class="btn btn--orange" href={routes.first[lang]}>{copy.plan}</a>
+          <a class="btn btn--ghost" href={routes.houses[lang]}>{copy.houses}</a>
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <div class="photo ratio-4x5">
+          <img src="/img/iglesia-en-casa.webp" srcset="/img/iglesia-en-casa-sm.webp 900w, /img/iglesia-en-casa.webp 1800w" sizes="(min-width: 860px) 45vw, 100vw" alt={lang === 'es' ? 'Una iglesia en casa con la Biblia abierta en la sala' : 'A house church with an open Bible in the living room'} width="900" height="1195" fetchpriority="high" />
+        </div>
+        <blockquote class="scripture hero-verse">{copy.heroVerse}<cite>{copy.heroRef}</cite></blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--teal mission">
+    <div class="wrap">
+      <span class="kicker">{copy.missionKicker}</span>
+      <p class="mission-text">{copy.mission}</p>
+      <a class="arrow-link" href={routes.about[lang]}>{copy.aboutLink}</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="photo ratio-4x3">
+        <img src="/img/domingo-reunion-sm.webp" srcset="/img/domingo-reunion-sm.webp 900w, /img/domingo-reunion.webp 1800w" sizes="(min-width: 860px) 50vw, 100vw" alt={lang === 'es' ? 'La iglesia reunida un domingo en Doral' : 'The church gathered on a Sunday in Doral'} loading="lazy" width="900" height="678" />
+      </div>
+      <div>
+        <span class="kicker">{copy.sundayKicker}</span>
+        <h2>{copy.sundayTitle}</h2>
+        <p>{copy.sundayText}</p>
+        <dl class="facts">
+          <div><dt>{copy.sundayWhen}</dt><dd>{lang === 'es' ? 'Domingos' : 'Sundays'}, {sunday.time}</dd></div>
+          <div><dt>{copy.sundayWhere}</dt><dd>{sunday.place}<br />{sunday.address}</dd></div>
+        </dl>
+        <div class="btn-row">
+          <a class="btn" href={routes.first[lang]}>{copy.plan}</a>
+          <a class="btn btn--ghost" href={links.maps}>{copy.directions}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap split split--wide-left">
+      <div class="video">
+        <iframe src={playlistEmbed(playlists.sermons)} title={copy.sermonKicker} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div>
+        <span class="kicker">{copy.sermonKicker}</span>
+        <h2>{copy.sermonTitle}</h2>
+        <p>{copy.sermonText}</p>
+        <a class="arrow-link" href={routes.teaching[lang]}>{copy.allSermons}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <span class="kicker">{copy.housesKicker}</span>
+        <h2>{copy.housesTitle}</h2>
+        <p>{copy.housesText}</p>
+        <div class="btn-row">
+          <a class="btn btn--orange" href={links.joinHouseChurch}>{copy.housesBtn}</a>
+          <a class="btn btn--ghost" href={routes.houses[lang]}>{copy.housesMore}</a>
+        </div>
+      </div>
+      <div class="photo ratio-4x5">
+        <img src="/img/oracion-sm.webp" srcset="/img/oracion-sm.webp 900w, /img/oracion.webp 1800w" sizes="(min-width: 860px) 50vw, 100vw" alt={lang === 'es' ? 'La iglesia orando junta' : 'The church praying together'} loading="lazy" width="900" height="1195" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.pathKicker}</span>
+        <h2>{copy.pathTitle}</h2>
+      </div>
+      <div class="grid-3">
+        {copy.steps.map((s, i) => (
+          <article class="card">
+            <span class="num">0{i + 1}</span>
+            <h3>{s.t}</h3>
+            <p class="muted">{s.d}</p>
+            <a class="arrow-link" href={s.href}>{s.l}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--orange">
+    <div class="wrap cta">
+      <div>
+        <h2>{copy.ctaTitle}</h2>
+        <p class="lead">{copy.ctaText}</p>
+      </div>
+      <a class="btn" href={links.stayConnected}>{copy.ctaBtn}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: clamp(2.5rem, 6vw, 5rem) var(--section); }
+  .hero-grid { display: grid; gap: var(--gap); align-items: center; }
+  @media (min-width: 860px) { .hero-grid { grid-template-columns: 1.15fr 1fr; } }
+  .hero h1 { font-size: clamp(3.4rem, 2rem + 6.5vw, 7.5rem); }
+  .accent { color: var(--orange); }
+  .hero-photo { margin: 0; }
+  .hero-verse { font-size: var(--step-0); margin-top: 1.25rem; }
+  .mission-text { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--step-3); line-height: 1; max-width: 30ch; margin-bottom: 1.5rem; }
+  .facts { display: grid; gap: 1rem; margin: 1.5rem 0 0; }
+  @media (min-width: 560px) { .facts { grid-template-columns: auto 1fr; column-gap: 2.5rem; } }
+  .facts dt { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--step--1); color: var(--orange-ink); }
+  .facts dd { margin: 0.2rem 0 0; font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+  .cta h2 { margin-bottom: 0.3em; }
+</style>

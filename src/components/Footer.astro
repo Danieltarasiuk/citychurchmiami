@@ -1,0 +1,64 @@
+---
+import { links, routes, nav, sunday, type Lang } from '../data/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const es = lang === 'es';
+---
+<footer class="site-footer section--dark">
+  <div class="wrap grid">
+    <div class="about">
+      <img src="/brand/logo-white.png" alt="CityChurch" width="200" height="59" />
+      <p class="tag">De casa en casa. De ciudad en ciudad.</p>
+    </div>
+
+    <div>
+      <h2 class="label">{es ? 'Domingos' : 'Sundays'}</h2>
+      <p>{sunday.time}{es ? '' : ' (in Spanish)'}<br />{sunday.place}<br />{sunday.address}</p>
+      <a class="arrow-link" href={links.maps}>{es ? 'Cómo llegar' : 'Directions'}</a>
+    </div>
+
+    <div>
+      <h2 class="label">{es ? 'Explora' : 'Explore'}</h2>
+      <ul>
+        {nav[lang].map((i) => <li><a href={routes[i.key][lang]}>{i.label}</a></li>)}
+        <li><a href={routes.first[lang]}>{es ? '¿Primera vez?' : 'First time?'}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="label">{es ? 'Conéctate' : 'Connect'}</h2>
+      <ul>
+        <li><a href={links.stayConnected}>{es ? 'Mantente conectado' : 'Stay connected'}</a></li>
+        <li><a href={links.joinHouseChurch}>{es ? 'Únete a una iglesia en casa' : 'Join a house church'}</a></li>
+        <li><a href={links.serve}>{es ? 'Sirve con nosotros' : 'Serve with us'}</a></li>
+        <li><a href={links.give}>{es ? 'Dar' : 'Give'}</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap bottom">
+    <span>© {new Date().getFullYear()} CityChurch Miami</span>
+    <span class="social">
+      <a href={links.youtube}>YouTube</a>
+      <a href={es ? links.instagramEs : links.instagramEn}>Instagram</a>
+      <a href={links.facebook}>Facebook</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding-block: clamp(3.5rem, 7vw, 5rem) 2rem; }
+  .grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 860px) { .grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+  .about img { width: 200px; height: auto; margin-bottom: 1rem; }
+  .tag { font-family: var(--scripture); font-style: italic; color: var(--stone); }
+  .label { font-family: var(--display); font-weight: 700; font-size: 1rem; letter-spacing: 0.14em; color: var(--orange); margin-bottom: 1rem; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { margin-bottom: 0.45rem; }
+  a { text-decoration: none; }
+  ul a:hover { color: var(--orange); }
+  p { color: rgba(250, 246, 240, 0.85); }
+  .bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(250, 246, 240, 0.15); font-size: var(--step--1); color: rgba(250, 246, 240, 0.6); }
+  .social { display: flex; gap: 1.25rem; }
+  .social a:hover { color: var(--orange); }
+</style>

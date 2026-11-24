@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { links, routes, sunday, type Lang } from '../data/site';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const copy = {
+  es: {
+    title: 'Iglesias en casa',
+    description: 'Durante la semana nos reunimos en hogares por toda la ciudad para compartir una comida, orar y abrir la Biblia juntos.',
+    kicker: 'Iglesias en casa',
+    h1: 'La iglesia más cercana a ti es la tuya.',
+    lead: 'Durante la semana la iglesia se reúne en hogares por toda la ciudad. Es ahí donde nos conocemos de verdad, crecemos juntos y aprendemos a seguir a Jesús en la vida diaria.',
+    join: 'Únete a una iglesia en casa',
+    whyKicker: 'Por qué en casa',
+    whyTitle: 'Una mezcla hermosa de personas.',
+    why: [
+      'Nuestras iglesias en casa no están organizadas por edad, género, etapa de vida ni demografía. No hay un grupo para jóvenes, uno para matrimonios y otro para solteros. La iglesia en casa más cercana a ti es la tuya.',
+      'Lo que encontrarás es una mezcla hermosa de personas: distintas edades, distintas historias, distintas temporadas de vida, aprendiendo y creciendo juntas. Eso no es un accidente. Es el diseño. La fe se profundiza cuando caminamos con personas que no son iguales a nosotros.',
+      'Y tiene un propósito misional: cuando te unes a la iglesia en casa de tu vecindario, no solo asistes a un grupo. Eres enviado como misionero a tu propia comunidad.',
+    ],
+    nightKicker: 'Una noche típica',
+    nightTitle: '¿Qué pasa en una iglesia en casa?',
+    night: [
+      { t: 'Comemos juntos', d: 'Empezamos alrededor de la mesa. Compartir una comida es la forma más sencilla de volvernos familia.' },
+      { t: 'Abrimos la Biblia', d: 'Leemos un pasaje y conversamos: qué dice, qué significa y cómo lo vivimos esta semana.' },
+      { t: 'Oramos unos por otros', d: 'Llevamos juntos las cargas, celebramos lo que Dios hace y salimos enviados a nuestro vecindario.' },
+    ],
+    sundayKicker: 'Y los domingos',
+    sundayTitle: 'Muchas casas. Una sola iglesia.',
+    sundayText: `Somos una sola iglesia formada por muchas iglesias en casa. Cada domingo a las ${sunday.time} nos reunimos todos en ${sunday.place}, en Doral.`,
+    plan: 'Planea tu visita',
+    ctaTitle: 'Encuentra tu casa.',
+    ctaText: 'Déjanos tus datos y te conectamos con la iglesia en casa más cercana a ti.',
+  },
+  en: {
+    title: 'House churches',
+    description: 'During the week we meet in homes across the city to share a meal, pray, and open the Bible together.',
+    kicker: 'House churches',
+    h1: 'The church closest to you is yours.',
+    lead: 'During the week the church meets in homes across the city. That’s where we really get to know each other, grow together, and learn to follow Jesus in everyday life.',
+    join: 'Join a house church',
+    whyKicker: 'Why homes',
+    whyTitle: 'A beautiful mix of people.',
+    why: [
+      'Our house churches are not organized by age, gender, life stage, or demographics. There is no group for young adults, another for couples, and another for singles. The house church closest to you is yours.',
+      'What you will find is a beautiful mix of people: different ages, different stories, different seasons of life, learning and growing together. That is not an accident. It is the design. Faith grows deeper when we walk with people who are not like us.',
+      'And it has a missional purpose: when you join the house church in your neighborhood, you are not just attending a group. You are being sent as a missionary into your own community.',
+    ],
+    nightKicker: 'A typical night',
+    nightTitle: 'What happens at a house church?',
+    night: [
+      { t: 'We eat together', d: 'We start around the table. Sharing a meal is the simplest way to become family.' },
+      { t: 'We open the Bible', d: 'We read a passage and talk about it: what it says, what it means, and how we live it this week.' },
+      { t: 'We pray for each other', d: 'We carry each other’s burdens, celebrate what God is doing, and go out sent into our neighborhood.' },
+    ],
+    sundayKicker: 'And on Sundays',
+    sundayTitle: 'Many homes. One church.',
+    sundayText: `We are one church made up of many house churches. Every Sunday at ${sunday.time} we all gather at ${sunday.place} in Doral.`,
+    plan: 'Plan your visit',
+    ctaTitle: 'Find your house.',
+    ctaText: 'Leave us your info and we will connect you with the house church closest to you.',
+  },
+}[lang];
+---
+<Base lang={lang} page="houses" title={copy.title} description={copy.description} image="/img/iglesia-en-casa.webp">
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/sala" alt={lang === 'es' ? 'Una iglesia en casa reunida en la sala' : 'A house church gathered in a living room'}>
+    <div class="btn-row"><a class="btn btn--orange" href={links.joinHouseChurch}>{copy.join}</a></div>
+  </PageHero>
+
+  <section class="section section--white">
+    <div class="wrap split">
+      <div class="photo ratio-4x5"><img src="/img/iglesia-en-casa-sm.webp" alt={lang === 'es' ? 'La Biblia abierta durante una iglesia en casa' : 'An open Bible during a house church'} loading="lazy" width="900" height="1195" /></div>
+      <div>
+        <span class="kicker">{copy.whyKicker}</span>
+        <h2>{copy.whyTitle}</h2>
+        {copy.why.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">{copy.nightKicker}</span>
+        <h2>{copy.nightTitle}</h2>
+      </div>
+      <div class="grid-3">
+        {copy.night.map((n, i) => (
+          <article class="card"><span class="num">0{i + 1}</span><h3>{n.t}</h3><p class="muted">{n.d}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--teal">
+    <div class="wrap split">
+      <div>
+        <span class="kicker">{copy.sundayKicker}</span>
+        <h2>{copy.sundayTitle}</h2>
+        <p class="lead">{copy.sundayText}</p>
+        <div class="btn-row"><a class="btn btn--light" href={routes.first[lang]}>{copy.plan}</a></div>
+      </div>
+      <div class="photo ratio-4x3"><img src="/img/adoracion-sm.webp" alt={lang === 'es' ? 'Adoración un domingo' : 'Worship on a Sunday'} loading="lazy" width="900" height="678" /></div>
+    </div>
+  </section>
+
+  <section class="section section--orange">
+    <div class="wrap cta">
+      <div><h2>{copy.ctaTitle}</h2><p class="lead">{copy.ctaText}</p></div>
+      <a class="btn" href={links.joinHouseChurch}>{copy.join}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .grid-3 h3 { font-size: var(--step-2); }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+</style>

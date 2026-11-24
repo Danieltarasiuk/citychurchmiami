@@ -1,0 +1,26 @@
+---
+interface Props { kicker: string; title: string; lead?: string; image?: string; alt?: string; }
+const { kicker, title, lead, image, alt = '' } = Astro.props;
+---
+<section class="page-hero">
+  <div class={`wrap ${image ? 'with-image' : ''}`}>
+    <div>
+      <span class="kicker">{kicker}</span>
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </div>
+    {image && (
+      <div class="photo ratio-4x3">
+        <img src={`${image}-sm.webp`} srcset={`${image}-sm.webp 900w, ${image}.webp 1800w`} sizes="(min-width: 860px) 45vw, 100vw" alt={alt} width="900" height="678" fetchpriority="high" />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .page-hero { padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .with-image { display: grid; gap: var(--gap); align-items: center; }
+  @media (min-width: 860px) { .with-image { grid-template-columns: 1.1fr 1fr; } }
+  h1 { font-size: clamp(2.8rem, 1.8rem + 4.5vw, 5.6rem); }
+</style>
