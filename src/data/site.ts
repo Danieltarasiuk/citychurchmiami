@@ -13,7 +13,7 @@ export const links = {
   youtube: 'https://www.youtube.com/@citychurchmiami',
   instagramEs: 'https://www.instagram.com/iglesiadelaciudad.miami/',
   instagramEn: 'https://www.instagram.com/citychurch.miami/',
-  facebook: 'https://www.facebook.com/citychurchmia',
+  facebook: 'https://www.facebook.com/iglesiadelaciudad.miami/',
   maps: 'https://www.google.com/maps/search/?api=1&query=John+I.+Smith+K-8+Center+10415+NW+52nd+St+Doral+FL+33178',
 };
 
