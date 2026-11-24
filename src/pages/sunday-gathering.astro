@@ -1,21 +1,39 @@
 ---
 // Página del domingo (estilo "link in bio"). El código QR apunta aquí:
 // citychurch.miami/sunday-gathering/  (no cambiar esta dirección)
-// Para agregar, quitar o reordenar botones, edita la lista "items".
+// Para agregar, quitar o reordenar botones, edita las listas en "sets" (es y en).
 import Base from '../layouts/Base.astro';
 import { links, routes } from '../data/site';
 
-const items = [
-  { es: 'Sitio web', en: 'Website', href: routes.home.es },
-  { es: 'Sermones', en: 'Sermons', href: routes.teaching.es },
-  { es: 'Asiste a una iglesia en casa', en: 'Join a house church', href: links.joinHouseChurch },
-  { es: 'Ofrendar', en: 'Give', href: links.give },
-  { es: '¿Primera vez? Déjanos tus datos', en: 'First time? Leave us your info', href: links.stayConnected },
-  { es: 'Registro de niños', en: 'Kids registration', href: links.kidsEs },
-];
+const sets = {
+  es: {
+    tag: 'De casa en casa. De ciudad en ciudad.',
+    instagram: links.instagramEs,
+    items: [
+      { t: 'Sitio web', href: routes.home.es },
+      { t: 'Sermones', href: links.youtube },
+      { t: 'Asiste a una iglesia en casa', href: links.joinHouseChurch },
+      { t: 'Ofrendar', href: links.give },
+      { t: '¿Primera vez? Déjanos tus datos', href: links.stayConnected },
+      { t: 'Registro de niños', href: links.kidsEs },
+    ],
+  },
+  en: {
+    tag: 'From house to house. From city to city.',
+    instagram: links.instagramEn,
+    items: [
+      { t: 'Website', href: routes.home.en },
+      { t: 'Sermons', href: links.youtube },
+      { t: 'Join a house church', href: links.joinHouseChurch },
+      { t: 'Give', href: links.give },
+      { t: 'First time? Leave us your info', href: links.stayConnected },
+      { t: 'Kids registration', href: links.kidsEn },
+    ],
+  },
+};
 
 const social = [
-  { name: 'Instagram', href: links.instagramEs, path: 'M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z' },
+  { name: 'Instagram', href: '', path: 'M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z' },
   { name: 'Facebook', href: links.facebook, path: 'M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3Z' },
   { name: 'YouTube', href: links.youtube, path: 'M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z' },
 ];
@@ -23,31 +41,56 @@ const social = [
 <Base lang="es" page="sunday" title="Domingo" description="CityChurch Miami: sitio web, sermones, iglesias en casa y ofrendas." bare>
   <section class="bio">
     <div class="card">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-set="es" aria-pressed="true">ES</button>
+        <button type="button" data-set="en" aria-pressed="false">EN</button>
+      </div>
       <div class="logo"><img src="/brand/symbol-black.png" alt="" width="120" height="120" /></div>
       <h1>CityChurch Miami</h1>
-      <p class="tag">De casa en casa. De ciudad en ciudad.</p>
 
-      <ul class="social">
-        {social.map((s) => (
-          <li><a href={s.href} aria-label={s.name}><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d={s.path} fill="currentColor" /></svg></a></li>
-        ))}
-      </ul>
-
-      <ul class="links">
-        {items.map((i) => (
-          <li>
-            <a href={i.href}>
-              <span class="text"><span class="es">{i.es}</span><span class="en">{i.en}</span></span>
-              <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
-            </a>
-          </li>
-        ))}
-      </ul>
+      {(['es', 'en'] as const).map((l) => (
+        <div class="set" data-lang={l} lang={l} hidden={l === 'en'}>
+          <p class="tag">{sets[l].tag}</p>
+          <ul class="social">
+            {social.map((so) => (
+              <li><a href={so.name === 'Instagram' ? sets[l].instagram : so.href} aria-label={so.name}><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d={so.path} fill="currentColor" /></svg></a></li>
+            ))}
+          </ul>
+          <ul class="links">
+            {sets[l].items.map((i) => (
+              <li>
+                <a href={i.href}>
+                  <span class="es">{i.t}</span>
+                  <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   </section>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.lang button');
+    const show = (lang: string) => {
+      document.querySelectorAll<HTMLElement>('.set').forEach((el) => { el.hidden = el.dataset.lang !== lang; });
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === lang)));
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('cc-lang', lang); } catch {}
+    };
+    let saved: string | null = null;
+    try { saved = localStorage.getItem('cc-lang'); } catch {}
+    if (saved === 'en' || saved === 'es') show(saved);
+    buttons.forEach((b) => b.addEventListener('click', () => show(b.dataset.set!)));
+  </script>
 </Base>
 
 <style>
+  .card { position: relative; }
+  .lang { position: absolute; top: 1rem; right: 1rem; display: inline-flex; border: 1.5px solid var(--charcoal); border-radius: 999px; overflow: hidden; }
+  .lang button { font-family: var(--display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.06em; padding: 0.35rem 0.75rem; border: 0; background: transparent; color: var(--charcoal); cursor: pointer; }
+  .lang button[aria-pressed='true'] { background: var(--charcoal); color: var(--cream); }
   .bio { min-height: 100svh; display: grid; place-items: start center; padding: clamp(1.5rem, 6vw, 4rem) 1rem; }
   .card {
     width: min(100%, 460px); background: var(--white); border-radius: 28px;
@@ -69,7 +112,6 @@ const social = [
   }
   .links a:hover { transform: translateY(-2px); background: #F3ECE1; }
   .es { display: block; font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 1.2rem; line-height: 1.1; }
-  .en { display: block; font-style: italic; font-size: 0.85rem; color: var(--ink-2); margin-top: 0.15rem; }
   .arrow { flex: none; width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--charcoal); display: grid; place-items: center; }
   .links a:hover .arrow { border-color: var(--orange); color: var(--orange-ink); }
 </style>
