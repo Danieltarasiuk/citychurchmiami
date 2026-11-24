@@ -61,7 +61,7 @@ import { links, routes, sunday, playlists, playlistEmbed } from '../data/site';
 
   <!-- 4. Foto a todo lo ancho con texto encima -->
   <section class="band">
-    <img src="/img/papa-hijo.webp" alt="Un papá sonríe con su hijo en brazos después del servicio" loading="lazy" />
+    <img src="/img/abrazo-adoracion.webp" alt="Una madre abraza a su hijo durante la adoración" loading="lazy" />
     <div class="band-shade"></div>
     <div class="wrap band-text">
       <h2 class="serif">¿Nuevo en CityChurch?</h2>
@@ -159,10 +159,10 @@ import { links, routes, sunday, playlists, playlistEmbed } from '../data/site';
 
   /* Banda con foto */
   .band { position: relative; min-height: 640px; display: flex; align-items: center; color: var(--cream); overflow: hidden; }
-  .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; }
-  .band-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,25,23,0.85) 0%, rgba(26,25,23,0.55) 40%, rgba(26,25,23,0) 70%); }
+  .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+  .band-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,25,23,0.82) 0%, rgba(26,25,23,0.35) 60%, rgba(26,25,23,0.1) 100%); }
   .band-text { position: relative; }
-  @media (max-width: 760px) { .band { align-items: flex-end; min-height: 620px; } .band img { object-position: 38% 30%; } .band-shade { background: linear-gradient(180deg, rgba(26,25,23,0) 35%, rgba(26,25,23,0.88) 80%); } .band-text { padding-bottom: 2.5rem; } }
+  @media (max-width: 760px) { .band { align-items: flex-end; min-height: 620px; } .band img { object-position: 50% 30%; } .band-shade { background: linear-gradient(180deg, rgba(26,25,23,0) 35%, rgba(26,25,23,0.88) 80%); } .band-text { padding-bottom: 2.5rem; } }
   .band h2 { font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.8rem); max-width: 12ch; color: var(--white); }
   .band p { font-size: var(--step-1); max-width: 34ch; }
 
