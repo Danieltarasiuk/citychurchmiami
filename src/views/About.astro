@@ -96,7 +96,7 @@ const copy = {
 const ids = ['quienes-somos', 'valores', 'creencias', 'liderazgo'];
 ---
 <Base lang={lang} page="about" title={copy.title} description={copy.description}>
-  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/bienvenida" alt={lang === 'es' ? 'La iglesia saludándose después del servicio' : 'The church greeting each other after the service'} />
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/bienvenida-amigas" position="50% 30%" alt={lang === 'es' ? 'Tres mujeres de la iglesia sonriendo juntas' : 'Three women from the church smiling together'} />
 
   <nav class="subnav" aria-label={copy.kicker}>
     <div class="wrap"><ul>{copy.sub.map((s, i) => <li><a href={`#${ids[i]}`}>{s}</a></li>)}</ul></div>
@@ -105,7 +105,8 @@ const ids = ['quienes-somos', 'valores', 'creencias', 'liderazgo'];
   <section id="quienes-somos" class="section section--teal">
     <div class="wrap">
       <span class="kicker">{copy.missionKicker}</span>
-      <p class="big">{copy.mission}</p>
+      <p class="giant" aria-hidden="true">{lang === 'es' ? 'De ciudad en ciudad.' : 'City to city.'}</p>
+      <blockquote class="mission-quote">{copy.mission}</blockquote>
       <p class="tagline">{copy.tagline}</p>
     </div>
   </section>
@@ -169,6 +170,8 @@ const ids = ['quienes-somos', 'valores', 'creencias', 'liderazgo'];
 </Base>
 
 <style>
+  #quienes-somos { overflow: hidden; }
+  #quienes-somos .giant { color: var(--orange); font-size: clamp(3.5rem, 1.5rem + 9vw, 9rem); }
   .subnav { position: sticky; top: 76px; z-index: 40; background: var(--white); border-bottom: 1px solid var(--line); }
   .subnav ul { display: flex; gap: 1.75rem; overflow-x: auto; list-style: none; margin: 0; padding: 0.9rem 0; }
   .subnav a { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; white-space: nowrap; }

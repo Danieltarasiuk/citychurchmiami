@@ -22,6 +22,7 @@ const es = lang === 'es';
       <ul>
         {nav[lang].map((i) => <li><a href={routes[i.key][lang]}>{i.label}</a></li>)}
         <li><a href={routes.first[lang]}>{es ? '¿Primera vez?' : 'First time?'}</a></li>
+        <li><a href={routes.baptism[lang]}>{es ? 'Bautismo' : 'Baptism'}</a></li>
       </ul>
     </div>
 
@@ -53,7 +54,7 @@ const es = lang === 'es';
   @media (min-width: 860px) { .grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
   .about img { width: 200px; height: auto; margin-bottom: 1rem; }
   .tag { font-family: var(--scripture); font-style: italic; color: var(--stone); }
-  .label { font-family: var(--display); font-weight: 700; font-size: 1rem; letter-spacing: 0.14em; color: var(--orange); margin-bottom: 1rem; }
+  .label { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.14em; color: var(--orange); margin-bottom: 1rem; }
   ul { list-style: none; margin: 0; padding: 0; }
   li { margin-bottom: 0.45rem; }
   a { text-decoration: none; }

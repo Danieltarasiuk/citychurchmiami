@@ -18,6 +18,10 @@ const site = Astro.site!;
 const fullTitle = page === 'home' ? title : `${title} | CityChurch Miami`;
 const canonical = new URL(routes[page][lang], site).href;
 const alt = new URL(routes[page][lang === 'es' ? 'en' : 'es'], site).href;
+// Vista previa: en Vercel, cualquier rama que no sea main muestra el aviso y no se indexa.
+const branch = process.env.VERCEL_GIT_COMMIT_REF ?? process.env.PREVIEW_BRANCH ?? '';
+const isPreview = branch !== '' && branch !== 'main';
+const showSticky = !bare && page !== 'first' && page !== 'sunday';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -26,6 +30,7 @@ const alt = new URL(routes[page][lang === 'es' ? 'en' : 'es'], site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang={lang} href={canonical} />
     <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={alt} />
@@ -52,11 +57,13 @@ const alt = new URL(routes[page][lang === 'es' ? 'en' : 'es'], site).href;
     <script src="https://js.churchcenter.com/modal/v1" defer></script>
   </head>
   <body>
+    {isPreview && <div class="preview-bar" lang="es">Vista previa del nuevo sitio · No es la versión publicada</div>}
     <a class="skip visually-hidden" href="#main">{lang === 'es' ? 'Ir al contenido' : 'Skip to content'}</a>
     {!bare && <Header lang={lang} page={page} />}
     <main id="main">
       <slot />
     </main>
     {!bare && <Footer lang={lang} />}
+    {showSticky && <a class="sticky-visit" href={routes.first[lang]}>{lang === 'es' ? 'Planea tu visita' : 'Plan your visit'}</a>}
   </body>
 </html>

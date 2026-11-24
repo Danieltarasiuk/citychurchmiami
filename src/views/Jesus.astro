@@ -44,6 +44,7 @@ const copy = {
       { t: '¿Tienes preguntas?', d: 'Escríbenos. Hay personas reales al otro lado, dispuestas a conversar sin juzgar.', l: 'Escríbenos', href: links.stayConnected },
       { t: 'Conoce nuestra comunidad', d: 'Una iglesia en casa puede ser el lugar donde la fe cobra vida. Encuentra una cerca de ti.', l: 'Iglesias en casa', href: routes.houses.es },
       { t: 'Ven un domingo', d: 'Escucha la Biblia enseñada de manera simple y clara. Ven tal como estás.', l: 'Planea tu visita', href: routes.first.es },
+      { t: '¿Ya confiaste en Jesús?', d: 'El bautismo es la manera de contarlo públicamente. Te acompañamos en cada paso.', l: 'Sobre el bautismo', href: routes.baptism.es },
     ],
   },
   en: {
@@ -84,12 +85,13 @@ const copy = {
       { t: 'Have questions?', d: 'Write to us. There are real people on the other side, ready to talk without judgment.', l: 'Write to us', href: links.stayConnected },
       { t: 'Meet our community', d: 'A house church can be the place where faith comes alive. Find one near you.', l: 'House churches', href: routes.houses.en },
       { t: 'Come on a Sunday', d: 'Hear the Bible taught simply and clearly. Come as you are.', l: 'Plan your visit', href: routes.first.en },
+      { t: 'Already trusted Jesus?', d: 'Baptism is how you tell that story publicly. We\u2019ll walk with you every step.', l: 'About baptism', href: routes.baptism.en },
     ],
   },
 }[lang];
 ---
 <Base lang={lang} page="jesus" title={copy.title} description={copy.description} image="/img/biblia-cafe.webp">
-  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} />
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} giant={lang === 'es' ? 'Jesús' : 'Jesus'} />
 
   {copy.parts.map((part, i) => (
     <section class={`section ${part.dark ? 'section--teal' : i % 2 ? 'section--white' : ''}`}>
@@ -108,14 +110,21 @@ const copy = {
     </section>
   ))}
 
+  <section class="photo-band">
+    <img src="/img/adoracion-manos.webp" alt={lang === 'es' ? 'Manos levantadas en adoración un domingo' : 'Hands raised in worship on a Sunday'} loading="lazy" style="object-position: 40% 40%" />
+    <div class="shade"></div>
+    <div class="wrap">
+      <h2>{copy.nextTitle}</h2>
+      <p>{copy.nextText}</p>
+    </div>
+  </section>
+
   <section class="section">
     <div class="wrap">
       <div class="section-head">
         <span class="kicker">{copy.nextKicker}</span>
-        <h2>{copy.nextTitle}</h2>
-        <p class="lead">{copy.nextText}</p>
       </div>
-      <div class="grid-3">
+      <div class="cards4">
         {copy.cards.map((c) => (
           <article class="card">
             <h3>{c.t}</h3>
@@ -135,4 +144,6 @@ const copy = {
   .section--teal .n { color: var(--orange); }
   .side .kicker { margin-top: 1rem; }
   h2 { max-width: 16ch; }
+  .cards4 { display: grid; gap: var(--gap); }
+  @media (min-width: 760px) { .cards4 { grid-template-columns: repeat(2, 1fr); } }
 </style>

@@ -1,26 +1,34 @@
 ---
-interface Props { kicker: string; title: string; lead?: string; image?: string; alt?: string; }
-const { kicker, title, lead, image, alt = '' } = Astro.props;
+// Encabezado de página. Con foto: foto a todo lo ancho con el texto encima.
+// Sin foto: encabezado sencillo sobre crema.
+interface Props { kicker: string; title: string; lead?: string; image?: string; alt?: string; position?: string; giant?: string; }
+const { kicker, title, lead, image, alt = '', position = '50% 40%', giant } = Astro.props;
 ---
-<section class="page-hero">
-  <div class={`wrap ${image ? 'with-image' : ''}`}>
-    <div>
+{image ? (
+  <section class="hero-full">
+    <img src={`${image}.webp`} srcset={`${image}-sm.webp 900w, ${image}.webp 2000w`} sizes="100vw" alt={alt} fetchpriority="high" style={`object-position: ${position}`} />
+    <div class="shade"></div>
+    <div class="wrap">
       <span class="kicker">{kicker}</span>
       <h1>{title}</h1>
       {lead && <p class="lead">{lead}</p>}
       <slot />
     </div>
-    {image && (
-      <div class="photo ratio-4x3">
-        <img src={`${image}-sm.webp`} srcset={`${image}-sm.webp 900w, ${image}.webp 1800w`} sizes="(min-width: 860px) 45vw, 100vw" alt={alt} width="900" height="678" fetchpriority="high" />
-      </div>
-    )}
-  </div>
-</section>
+  </section>
+) : (
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="kicker">{kicker}</span>
+      {giant && <p class="giant" aria-hidden="true">{giant}</p>}
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </div>
+  </section>
+)}
 
 <style>
-  .page-hero { padding-block: clamp(2.5rem, 6vw, 5rem); }
-  .with-image { display: grid; gap: var(--gap); align-items: center; }
-  @media (min-width: 860px) { .with-image { grid-template-columns: 1.1fr 1fr; } }
-  h1 { font-size: clamp(2.8rem, 1.8rem + 4.5vw, 5.6rem); }
+  .page-hero { padding-block: clamp(3rem, 7vw, 6rem) clamp(2rem, 5vw, 3.5rem); }
+  .page-hero h1 { max-width: 18ch; }
+  .page-hero { overflow: hidden; }
 </style>

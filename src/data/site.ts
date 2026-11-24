@@ -64,6 +64,7 @@ export const routes = {
   first: { es: '/primera-vez/', en: '/en/first-time/' },
   sunday: { es: '/sunday-gathering/', en: '/sunday-gathering/' },
   english: { es: '/en/english/', en: '/en/english/' },
+  baptism: { es: '/bautismo/', en: '/en/baptism/' },
 } as const;
 
 export type RouteKey = keyof typeof routes;

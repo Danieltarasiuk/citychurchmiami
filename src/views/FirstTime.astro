@@ -51,7 +51,7 @@ const copy = {
 }[lang];
 ---
 <Base lang={lang} page="first" title={copy.title} description={copy.description} image="/img/bienvenida.webp">
-  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/bienvenida" alt={lang === 'es' ? 'Personas de la iglesia recibiendo a otros en la entrada' : 'People from the church welcoming others at the entrance'}>
+  <PageHero kicker={copy.kicker} title={copy.h1} lead={copy.lead} image="/img/papa-hijo" position="35% 30%" alt={lang === 'es' ? 'Un papá sonríe con su hijo en brazos en la iglesia' : 'A dad smiles holding his son at church'}>
     <div class="btn-row">
       <a class="btn btn--orange" href={links.stayConnected}>{copy.tell}</a>
       <a class="btn btn--ghost" href={links.maps}>{copy.directions}</a>
@@ -87,7 +87,7 @@ const copy = {
         <p class="lead">{copy.afterText}</p>
         <div class="btn-row"><a class="btn btn--light" href={routes.houses[lang]}>{copy.afterBtn}</a></div>
       </div>
-      <div class="photo ratio-4x3"><img src="/img/servicio-sm.webp" alt={lang === 'es' ? 'La iglesia adorando un domingo' : 'The church worshiping on a Sunday'} loading="lazy" width="900" height="720" /></div>
+      <div class="photo ratio-4x3"><img src="/img/adoracion-manos-sm.webp" alt={lang === 'es' ? 'La iglesia adorando un domingo' : 'The church worshiping on a Sunday'} loading="lazy" width="900" height="676" /></div>
     </div>
   </section>
 </Base>
