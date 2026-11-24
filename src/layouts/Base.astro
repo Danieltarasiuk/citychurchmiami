@@ -11,8 +11,9 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  bare?: boolean;
 }
-const { lang, page, title, description, image = '/img/domingo-reunion.webp' } = Astro.props;
+const { lang, page, title, description, image = '/img/domingo-reunion.webp', bare = false } = Astro.props;
 const site = Astro.site!;
 const fullTitle = page === 'home' ? title : `${title} | CityChurch Miami`;
 const canonical = new URL(routes[page][lang], site).href;
@@ -52,10 +53,10 @@ const alt = new URL(routes[page][lang === 'es' ? 'en' : 'es'], site).href;
   </head>
   <body>
     <a class="skip visually-hidden" href="#main">{lang === 'es' ? 'Ir al contenido' : 'Skip to content'}</a>
-    <Header lang={lang} page={page} />
+    {!bare && <Header lang={lang} page={page} />}
     <main id="main">
       <slot />
     </main>
-    <Footer lang={lang} />
+    {!bare && <Footer lang={lang} />}
   </body>
 </html>
