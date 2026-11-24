@@ -17,6 +17,7 @@ const ways = [
       <span class="kicker">Something new is starting</span>
       <p class="giant" aria-hidden="true">English</p>
       <h1>A CityChurch gathering in English.</h1>
+      <p class="launch">Launching Easter Sunday · March 28, 2027</p>
       <p class="lead">Same church, same mission, same family. We're starting an English-speaking community, and we'd love for you to be part of it from the beginning.</p>
       <div class="btn-row">
         <a class="btn btn--orange" href={links.englishInterest}>I'm interested</a>
@@ -44,7 +45,7 @@ const ways = [
       <div class="section-head">
         <span class="kicker">Monthly meetings</span>
         <h2>Come and see.</h2>
-        <p class="lead">Once a month we're getting together to share a meal, pray, and dream about what God wants to do through an English-speaking community in our city.</p>
+        <p class="lead">Between now and Easter, we're getting together once a month to share a meal, pray, and dream about what God wants to do through an English-speaking community in our city.</p>
       </div>
       <ol class="dates">
         {englishMeetings.dates.map((d) => {
@@ -113,6 +114,7 @@ const ways = [
     font-size: clamp(6rem, 3rem + 17vw, 17rem); line-height: 0.8; letter-spacing: -0.01em;
     color: var(--orange); margin: 0 0 0.15em -0.05em; max-width: none; white-space: nowrap;
   }
+  .launch { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); font-size: var(--step-1); margin: 0 0 0.75rem; }
   .poster h1 { font-size: clamp(2.2rem, 1.6rem + 2.6vw, 3.6rem); max-width: 18ch; }
   .dates { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 1rem; }
   @media (min-width: 760px) { .dates { grid-template-columns: repeat(4, 1fr); } }
