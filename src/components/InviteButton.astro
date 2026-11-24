@@ -1,0 +1,63 @@
+---
+// Botón "Invitar": en el teléfono abre el menú para compartir (WhatsApp, mensajes...);
+// en la computadora copia el texto. Las fechas que ya pasaron se quitan solas.
+import { englishMeetings } from '../data/site';
+interface Props { label: string; copied: string; variant?: 'ghost' | 'light' | 'card'; }
+const { label, copied, variant = 'ghost' } = Astro.props;
+const data = JSON.stringify({
+  dates: englishMeetings.dates.map((d) => ({ iso: d.iso, short: d.short })),
+  time: englishMeetings.timeShort,
+  area: englishMeetings.area,
+  launch: englishMeetings.launch,
+  form: englishMeetings.form,
+});
+---
+<button type="button" class={`invite-btn ${variant === 'card' ? 'invite-card' : `btn btn--${variant}`}`} data-invite={data} data-copied={copied} data-label={label}>
+  <slot>{label}</slot>
+</button>
+
+<script>
+  function inviteText(d: { dates: { iso: string; short: string }[]; time: string; area: string; launch: string; form: string }) {
+    const today = new Date().toISOString().slice(0, 10);
+    const upcoming = d.dates.filter((x) => x.iso >= today);
+    const lines = [
+      `Hey! My church, CityChurch Miami, is starting an English gathering. We launch on ${d.launch}, and until then we're meeting once a month to share a meal, pray, and dream about it together. I'd love for you to come!`,
+      '',
+    ];
+    if (upcoming.length) {
+      lines.push(`Sundays at ${d.time} in ${d.area}:`);
+      upcoming.forEach((x) => lines.push(`• ${x.short}`));
+      lines.push('');
+    }
+    lines.push("Sign up here and they'll text you a reminder:", d.form);
+    return lines.join('\n');
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('button[data-invite]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = inviteText(JSON.parse(btn.dataset.invite!));
+      const touch = window.matchMedia('(pointer: coarse)').matches;
+      if (touch && navigator.share) {
+        try { await navigator.share({ text }); return; } catch (e) { if ((e as Error).name === 'AbortError') return; }
+      }
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch {}
+        ta.remove();
+      }
+      const target = btn.querySelector<HTMLElement>('.es') ?? btn;
+      const original = target.textContent;
+      target.textContent = btn.dataset.copied ?? 'Copied!';
+      btn.classList.add('is-copied');
+      setTimeout(() => { target.textContent = original; btn.classList.remove('is-copied'); }, 2500);
+    });
+  });
+</script>
+
+<style>
+  .invite-btn { cursor: pointer; }
+  .invite-card { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; }
+</style>

@@ -44,8 +44,16 @@ export const playlists = {
 // Reuniones de interés del grupo en inglés (mismas fechas que el formulario 1377062)
 export const englishMeetings = {
   time: '6:00 PM',
+  timeShort: '6 PM',
   area: 'Doral',
-  dates: ['Sunday, December 6', 'Sunday, January 10', 'Sunday, February 7', 'Sunday, March 7'],
+  launch: 'Easter Sunday, March 28',
+  form: 'https://citychurchmia.churchcenter.com/people/forms/1377062',
+  dates: [
+    { iso: '2026-12-06', day: 'Sunday', date: 'December 6', short: 'Dec 6' },
+    { iso: '2027-01-10', day: 'Sunday', date: 'January 10', short: 'Jan 10' },
+    { iso: '2027-02-07', day: 'Sunday', date: 'February 7', short: 'Feb 7' },
+    { iso: '2027-03-07', day: 'Sunday', date: 'March 7', short: 'Mar 7' },
+  ],
 };
 
 export const playlistUrl = (id: string) => `https://www.youtube.com/playlist?list=${id}`;

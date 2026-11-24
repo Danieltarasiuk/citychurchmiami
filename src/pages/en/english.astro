@@ -3,6 +3,7 @@
 // Dates and time live in src/data/site.ts (englishMeetings).
 import Base from '../../layouts/Base.astro';
 import { links, routes, englishMeetings } from '../../data/site';
+import InviteButton from '../../components/InviteButton.astro';
 
 const ways = [
   { t: 'Come and see', d: 'Join one of the monthly meetings. No commitment, just a meal and good conversation.' },
@@ -22,6 +23,7 @@ const ways = [
       <div class="btn-row">
         <a class="btn btn--orange" href={links.englishInterest}>I'm interested</a>
         <a class="btn btn--ghost" href="#meetings">See the dates</a>
+        <InviteButton label="Invite a friend" copied="Copied! Paste it in a message." variant="ghost" />
       </div>
     </div>
   </section>
@@ -48,19 +50,19 @@ const ways = [
         <p class="lead">Between now and Easter, we're getting together once a month to share a meal, pray, and dream about what God wants to do through an English-speaking community in our city.</p>
       </div>
       <ol class="dates">
-        {englishMeetings.dates.map((d) => {
-          const [day, rest] = d.split(', ');
-          return (
-            <li>
-              <span class="day">{day}</span>
-              <span class="date">{rest}</span>
-              <span class="time">{englishMeetings.time} · {englishMeetings.area}</span>
-            </li>
-          );
-        })}
+        {englishMeetings.dates.map((d) => (
+          <li data-iso={d.iso}>
+            <span class="day">{d.day}</span>
+            <span class="date">{d.date}</span>
+            <span class="time">{englishMeetings.time} · {englishMeetings.area}</span>
+          </li>
+        ))}
       </ol>
       <p class="note">The address is on the sign-up form, and we'll text you a reminder before each meeting.</p>
-      <div class="btn-row"><a class="btn btn--light" href={links.englishInterest}>Save my spot</a></div>
+      <div class="btn-row">
+        <a class="btn btn--light" href={links.englishInterest}>Save my spot</a>
+        <InviteButton label="Invite a friend" copied="Copied! Paste it in a message." variant="ghost" />
+      </div>
     </div>
   </section>
 
@@ -105,6 +107,10 @@ const ways = [
       <a class="btn" href={links.englishInterest}>I'm interested</a>
     </div>
   </section>
+  <script>
+    const today = new Date().toISOString().slice(0, 10);
+    document.querySelectorAll<HTMLElement>('.dates li[data-iso]').forEach((li) => { if ((li.dataset.iso ?? '') < today) li.hidden = true; });
+  </script>
 </Base>
 
 <style>
@@ -123,6 +129,7 @@ const ways = [
   .date { display: block; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--step-2); line-height: 1; margin: 0.3rem 0; }
   .time { display: block; color: rgba(250, 246, 240, 0.8); }
   .note { color: rgba(250, 246, 240, 0.8); }
+  .dates li[hidden] { display: none; }
   .ways { display: grid; gap: var(--gap); }
   @media (min-width: 760px) { .ways { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1100px) { .ways { grid-template-columns: repeat(4, 1fr); } }

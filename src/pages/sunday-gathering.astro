@@ -4,11 +4,14 @@
 // Para agregar, quitar o reordenar botones, edita las listas en "sets" (es y en).
 import Base from '../layouts/Base.astro';
 import { links, routes } from '../data/site';
+import InviteButton from '../components/InviteButton.astro';
 
 const sets = {
   es: {
     tag: 'De casa en casa. De ciudad en ciudad.',
     instagram: links.instagramEs,
+    invite: 'Invita a alguien al grupo en inglés',
+    copied: '¡Copiado! Pégalo en un mensaje.',
     items: [
       { t: 'Sitio web', href: routes.home.es },
       { t: 'Sermones', href: links.youtube },
@@ -16,11 +19,14 @@ const sets = {
       { t: 'Ofrendar', href: links.give },
       { t: '¿Primera vez? Déjanos tus datos', href: links.stayConnected },
       { t: 'Registro de niños', href: links.kidsEs },
+      { t: 'Grupo en inglés', href: routes.english.en },
     ],
   },
   en: {
     tag: 'From house to house. From city to city.',
     instagram: links.instagramEn,
+    invite: 'Invite a friend to the English gathering',
+    copied: 'Copied! Paste it in a message.',
     items: [
       { t: 'Website', href: routes.home.en },
       { t: 'Sermons', href: links.youtube },
@@ -28,7 +34,7 @@ const sets = {
       { t: 'Give', href: links.give },
       { t: 'First time? Leave us your info', href: links.stayConnected },
       { t: 'Kids registration', href: links.kidsEn },
-      { t: 'English gathering: monthly meetings', href: routes.english.en },
+      { t: 'English gathering', href: routes.english.en },
     ],
   },
 };
@@ -66,6 +72,14 @@ const social = [
                 </a>
               </li>
             ))}
+            <li>
+              <InviteButton label={sets[l].invite} copied={sets[l].copied} variant="card">
+                <span class="invite-row">
+                  <span class="es">{sets[l].invite}</span>
+                  <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                </span>
+              </InviteButton>
+            </li>
           </ul>
         </div>
       ))}
@@ -114,5 +128,8 @@ const social = [
   .links a:hover { transform: translateY(-2px); background: #F3ECE1; }
   .es { display: block; font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 1.2rem; line-height: 1.1; }
   .arrow { flex: none; width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--charcoal); display: grid; place-items: center; }
+  .invite-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border: 1.5px dashed var(--orange); border-radius: 18px; padding: 1.15rem 1.25rem; text-align: left; transition: background 0.15s ease; }
+  .invite-row:hover { background: #FDF1E8; }
+  :global(.is-copied) .invite-row { background: var(--orange); }
   .links a:hover .arrow { border-color: var(--orange); color: var(--orange-ink); }
 </style>
