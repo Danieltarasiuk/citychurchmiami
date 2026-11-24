@@ -1,0 +1,129 @@
+---
+// English gathering interest page. Form: Church Center 1377062.
+// Dates and time live in src/data/site.ts (englishMeetings).
+import Base from '../../layouts/Base.astro';
+import { links, routes, englishMeetings } from '../../data/site';
+
+const ways = [
+  { t: 'Come and see', d: 'Join one of the monthly meetings. No commitment, just a meal and good conversation.' },
+  { t: 'Help launch it', d: 'Be part of the team that gets it started, from hospitality to kids to worship.' },
+  { t: 'Pray for it', d: 'Ask God to gather people who need a church family in English.' },
+  { t: 'Invite someone', d: 'A friend, a coworker, your grown kids. Bring them along.' },
+];
+---
+<Base lang="en" page="english" title="English Gathering" description={`CityChurch Miami is starting an English gathering. Monthly interest meetings on Sundays at ${englishMeetings.time} in ${englishMeetings.area}. Come and see.`} image="/img/bienvenida-amigas.webp">
+  <section class="poster">
+    <div class="wrap">
+      <span class="kicker">Something new is starting</span>
+      <p class="giant" aria-hidden="true">English</p>
+      <h1>A CityChurch gathering in English.</h1>
+      <p class="lead">Same church, same mission, same family. We're starting an English-speaking community, and we'd love for you to be part of it from the beginning.</p>
+      <div class="btn-row">
+        <a class="btn btn--orange" href={links.englishInterest}>I'm interested</a>
+        <a class="btn btn--ghost" href="#meetings">See the dates</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap split">
+      <div class="photo ratio-4x3">
+        <img src="/img/bienvenida-amigas-sm.webp" srcset="/img/bienvenida-amigas-sm.webp 900w, /img/bienvenida-amigas.webp 1800w" sizes="(min-width: 860px) 50vw, 100vw" alt="Three women from CityChurch smiling together" loading="lazy" width="900" height="600" />
+      </div>
+      <div>
+        <span class="kicker">Why we're doing this</span>
+        <h2>Room at the table.</h2>
+        <p>CityChurch has been a Spanish-speaking family from the start. But many of the people God has put around us speak English: our kids, our spouses, our coworkers, our neighbors.</p>
+        <p>So we're starting an English gathering with the same heart: a family of disciples who live out the gospel together, from house to house and from city to city.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="meetings" class="section section--teal">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Monthly meetings</span>
+        <h2>Come and see.</h2>
+        <p class="lead">Once a month we're getting together to share a meal, pray, and dream about what God wants to do through an English-speaking community in our city.</p>
+      </div>
+      <ol class="dates">
+        {englishMeetings.dates.map((d) => {
+          const [day, rest] = d.split(', ');
+          return (
+            <li>
+              <span class="day">{day}</span>
+              <span class="date">{rest}</span>
+              <span class="time">{englishMeetings.time} · {englishMeetings.area}</span>
+            </li>
+          );
+        })}
+      </ol>
+      <p class="note">The address is on the sign-up form, and we'll text you a reminder before each meeting.</p>
+      <div class="btn-row"><a class="btn btn--light" href={links.englishInterest}>Save my spot</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Ways to be part of it</span>
+        <h2>There's a place for you.</h2>
+      </div>
+      <div class="ways">
+        {ways.map((w, i) => (
+          <article class="card">
+            <span class="num">0{i + 1}</span>
+            <h3>{w.t}</h3>
+            <p class="muted">{w.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap split">
+      <div>
+        <span class="kicker">Until then</span>
+        <h2>Get to know us now.</h2>
+        <p>Our Sunday service is in Spanish, and you're always welcome to visit. Follow along in English on Instagram, or find out more about who we are.</p>
+        <div class="btn-row">
+          <a class="btn" href={links.instagramEn}>@citychurch.miami</a>
+          <a class="btn btn--ghost" href={routes.about.en}>About CityChurch</a>
+        </div>
+      </div>
+      <div class="photo ratio-4x3">
+        <img src="/img/domingo-adoracion-sm.webp" alt="The church worshiping together on a Sunday" loading="lazy" width="900" height="676" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--orange">
+    <div class="wrap cta">
+      <div><h2>Be part of it from day one.</h2><p class="lead">Tell us which meetings you can make and we'll keep you in the loop.</p></div>
+      <a class="btn" href={links.englishInterest}>I'm interested</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .poster { padding-block: clamp(2.5rem, 6vw, 5rem) var(--section); overflow: hidden; }
+  .giant {
+    font-family: var(--display); font-weight: 900; text-transform: uppercase;
+    font-size: clamp(6rem, 3rem + 17vw, 17rem); line-height: 0.8; letter-spacing: -0.01em;
+    color: var(--orange); margin: 0 0 0.15em -0.05em; max-width: none; white-space: nowrap;
+  }
+  .poster h1 { font-size: clamp(2.2rem, 1.6rem + 2.6vw, 3.6rem); max-width: 18ch; }
+  .dates { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 1rem; }
+  @media (min-width: 760px) { .dates { grid-template-columns: repeat(4, 1fr); } }
+  .dates li { border: 1px solid rgba(250, 246, 240, 0.25); border-radius: 18px; padding: 1.4rem 1.25rem; }
+  .day { display: block; font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--step--1); color: var(--orange); }
+  .date { display: block; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: var(--step-2); line-height: 1; margin: 0.3rem 0; }
+  .time { display: block; color: rgba(250, 246, 240, 0.8); }
+  .note { color: rgba(250, 246, 240, 0.8); }
+  .ways { display: grid; gap: var(--gap); }
+  @media (min-width: 760px) { .ways { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .ways { grid-template-columns: repeat(4, 1fr); } }
+  .ways h3 { font-size: var(--step-2); }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+</style>

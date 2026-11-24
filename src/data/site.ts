@@ -7,6 +7,7 @@ export const links = {
   stayConnected: `${CC}/people/forms/917264${modal}`,
   joinHouseChurch: `${CC}/people/forms/488200${modal}`,
   serve: `${CC}/people/forms/1229750${modal}`,
+  englishInterest: `${CC}/people/forms/1377062${modal}`,
   give: `${CC}/giving${modal}`,
   kidsEs: `${CC}/registrations/events/3800315`,
   kidsEn: `${CC}/registrations/events/3793386`,
@@ -40,6 +41,13 @@ export const playlists = {
   ],
 };
 
+// Reuniones de interés del grupo en inglés (mismas fechas que el formulario 1377062)
+export const englishMeetings = {
+  time: '6:00 PM',
+  area: 'Doral',
+  dates: ['Sunday, December 6', 'Sunday, January 10', 'Sunday, February 7', 'Sunday, March 7'],
+};
+
 export const playlistUrl = (id: string) => `https://www.youtube.com/playlist?list=${id}`;
 export const playlistEmbed = (id: string) => `https://www.youtube-nocookie.com/embed/videoseries?list=${id}`;
 
@@ -55,6 +63,7 @@ export const routes = {
   houses: { es: '/iglesias-en-casa/', en: '/en/house-churches/' },
   first: { es: '/primera-vez/', en: '/en/first-time/' },
   sunday: { es: '/sunday-gathering/', en: '/sunday-gathering/' },
+  english: { es: '/en/english/', en: '/en/english/' },
 } as const;
 
 export type RouteKey = keyof typeof routes;

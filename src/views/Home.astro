@@ -40,6 +40,10 @@ const copy = {
       { t: 'Ven un domingo', d: 'Reúnete con nosotros cualquier domingo. Ven tal como estás; todos son bienvenidos.', href: routes.first.es, l: 'Qué esperar' },
       { t: 'Únete a una casa', d: 'Encuentra una comunidad cerca de ti. La vida en familia lo cambia todo.', href: routes.houses.es, l: 'Iglesias en casa' },
     ],
+    engKicker: '¿Hablas inglés?',
+    engTitle: 'Estamos empezando algo nuevo.',
+    engText: 'Una reunión de CityChurch en inglés. Si tú, tus hijos o tus amigos hablan inglés, ven a conocer la visión.',
+    engBtn: 'Más información',
     ctaTitle: 'Mantente conectado.',
     ctaText: 'Déjanos tus datos y te escribimos personalmente. Te contamos lo que viene y te ayudamos a dar el siguiente paso.',
     ctaBtn: 'Mantente conectado',
@@ -79,6 +83,10 @@ const copy = {
       { t: 'Come on a Sunday', d: 'Join us any Sunday. Come as you are; everyone is welcome.', href: routes.first.en, l: 'What to expect' },
       { t: 'Join a house', d: 'Find a community near you. Life together changes everything.', href: routes.houses.en, l: 'House churches' },
     ],
+    engKicker: 'Something new',
+    engTitle: 'An English gathering is starting.',
+    engText: 'Our Sunday service is in Spanish, and we are starting a CityChurch community in English. Monthly meetings are happening now. Be part of it from the beginning.',
+    engBtn: 'Learn more',
     ctaTitle: 'Stay connected.',
     ctaText: 'Leave us your info and we will reach out personally. We will tell you what is coming up and help you take your next step.',
     ctaBtn: 'Stay connected',
@@ -117,7 +125,7 @@ const copy = {
   <section class="section">
     <div class="wrap split">
       <div class="photo ratio-4x3">
-        <img src="/img/domingo-reunion-sm.webp" srcset="/img/domingo-reunion-sm.webp 900w, /img/domingo-reunion.webp 1800w" sizes="(min-width: 860px) 50vw, 100vw" alt={lang === 'es' ? 'La iglesia reunida un domingo en Doral' : 'The church gathered on a Sunday in Doral'} loading="lazy" width="900" height="678" />
+        <img src="/img/domingo-adoracion-sm.webp" srcset="/img/domingo-adoracion-sm.webp 900w, /img/domingo-adoracion.webp 1800w" sizes="(min-width: 860px) 50vw, 100vw" alt={lang === 'es' ? 'La iglesia reunida un domingo en Doral' : 'The church gathered on a Sunday in Doral'} loading="lazy" width="900" height="676" />
       </div>
       <div>
         <span class="kicker">{copy.sundayKicker}</span>
@@ -185,6 +193,17 @@ const copy = {
     </div>
   </section>
 
+  <section class="section section--dark english">
+    <div class="wrap eng">
+      <div>
+        <span class="kicker">{copy.engKicker}</span>
+        <h2>{copy.engTitle}</h2>
+        <p class="lead">{copy.engText}</p>
+      </div>
+      <a class="btn btn--orange" href={routes.english.en} lang="en">{copy.engBtn}</a>
+    </div>
+  </section>
+
   <section class="section section--orange">
     <div class="wrap cta">
       <div>
@@ -209,6 +228,8 @@ const copy = {
   @media (min-width: 560px) { .facts { grid-template-columns: auto 1fr; column-gap: 2.5rem; } }
   .facts dt { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: var(--step--1); color: var(--orange-ink); }
   .facts dd { margin: 0.2rem 0 0; font-weight: 600; }
+  .eng { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
+  .english { padding-block: clamp(3rem, 7vw, 5rem); }
   .cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem; }
   .cta h2 { margin-bottom: 0.3em; }
 </style>
