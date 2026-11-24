@@ -1,0 +1,182 @@
+---
+// EJEMPLO del nuevo estilo (rama new-look). Base tranquila tipo editorial
+// (Lora en oraciones normales, paneles divididos, fotos a todo lo ancho)
+// con momentos "póster" de Barlow Condensed.
+import '@fontsource/lora/500.css';
+import Base from '../layouts/Base.astro';
+import { links, routes, sunday, playlists, playlistEmbed } from '../data/site';
+---
+<Base lang="es" page="home" title="CityChurch Miami | Una iglesia de iglesias en casa en Doral" description="Iglesia cristiana en español en Doral, Miami. Domingos a las 10 AM en John I. Smith K-8 y en iglesias en casa durante la semana." image="/img/bautismo-alegria.webp">
+
+  <!-- 1. Hero: foto a todo lo ancho, titular sereno -->
+  <section class="hero">
+    <img class="hero-img" src="/img/bautismo-alegria.webp" srcset="/img/bautismo-alegria-sm.webp 900w, /img/bautismo-alegria.webp 2200w" sizes="100vw" alt="Una mujer sonríe al salir del agua en su bautismo, junto a dos pastores" fetchpriority="high" />
+    <div class="hero-shade"></div>
+    <div class="wrap hero-text">
+      <span class="eyebrow">Domingos 10 AM · Doral, Miami</span>
+      <h1 class="serif">Una iglesia de iglesias en casa.</h1>
+      <p>Una familia de discípulos de Jesús que se reúne en hogares por toda la ciudad, y los domingos como una sola iglesia.</p>
+      <div class="pill-row">
+        <a class="pill pill--solid" href={routes.first.es}>Planea tu visita</a>
+        <a class="pill pill--light" href={routes.houses.es}>Iglesias en casa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Paneles divididos (crema | carbón) -->
+  <section class="panels">
+    <div class="panel panel--cream">
+      <h2 class="serif">¿Explorando la fe?</h2>
+      <div class="panel-photo bw">
+        <img src="/img/biblia-mano-sm.webp" alt="Una mano sobre una Biblia abierta" loading="lazy" width="900" height="600" />
+        <span class="block" aria-hidden="true"></span>
+      </div>
+      <p>No una religión. Una persona. Conoce a Jesús tal como aparece en los evangelios.</p>
+      <a class="pill" href={routes.jesus.es}>Conoce a Jesús</a>
+    </div>
+    <div class="panel panel--dark">
+      <h2 class="serif">Visítanos un domingo.</h2>
+      <div class="panel-photo">
+        <img src="/img/domingo-adoracion-sm.webp" alt="La iglesia adorando un domingo" loading="lazy" width="900" height="676" />
+      </div>
+      <dl class="facts">
+        <div><dt>Hora</dt><dd>{sunday.time}</dd></div>
+        <div><dt>Lugar</dt><dd>{sunday.place}<br />{sunday.address}</dd></div>
+      </dl>
+      <p class="soft">Llega unos minutos antes. Hay café, y CityChurch Kids tiene un espacio para los niños.</p>
+      <a class="pill pill--light" href={routes.first.es}>Qué esperar</a>
+    </div>
+  </section>
+
+  <!-- 3. Momento póster -->
+  <section class="poster">
+    <div class="wrap">
+      <p class="giant" aria-hidden="true">De casa<br />en casa.</p>
+      <blockquote class="mission">
+        Somos una iglesia de iglesias en casa en Miami, con el anhelo de ver a Dios obrar de manera sobrenatural en cada ciudad, por medio de una comunidad de discípulos que viven el evangelio como una familia en misión.
+      </blockquote>
+      <a class="pill" href={routes.about.es}>Quiénes somos</a>
+    </div>
+  </section>
+
+  <!-- 4. Foto a todo lo ancho con texto encima -->
+  <section class="band">
+    <img src="/img/papa-hijo.webp" alt="Un papá sonríe con su hijo en brazos después del servicio" loading="lazy" />
+    <div class="band-shade"></div>
+    <div class="wrap band-text">
+      <h2 class="serif">¿Nuevo en CityChurch?</h2>
+      <p>Ven tal como estás. Te esperamos en la puerta y te presentamos a alguien.</p>
+      <a class="pill pill--light" href={links.stayConnected}>Avísanos que vienes</a>
+    </div>
+  </section>
+
+  <!-- 5. Último mensaje -->
+  <section class="split-row">
+    <div class="wrap row">
+      <div class="video"><iframe src={playlistEmbed(playlists.latest)} title="Último mensaje" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      <div>
+        <span class="eyebrow dark">Último mensaje</span>
+        <h2 class="serif">La Biblia, de manera simple y clara.</h2>
+        <p>Serie actual: {playlists.current.name}.</p>
+        <a class="pill" href={routes.teaching.es}>Todos los mensajes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Paneles: bautismo | iglesias en casa -->
+  <section class="panels">
+    <div class="panel panel--orange">
+      <span class="giant-sm" aria-hidden="true">Bautismo</span>
+      <div class="panel-photo"><img src="/img/bautismo-joven-sm.webp" alt="Un joven sale del agua en su bautismo" loading="lazy" width="900" height="600" /></div>
+      <h2 class="serif">¿Listo para dar el paso?</h2>
+      <p>Una clase, una conversación con un pastor y un domingo para celebrar con tu familia de la iglesia.</p>
+      <a class="pill pill--dark" href="#">Quiero bautizarme</a>
+    </div>
+    <div class="panel panel--cream">
+      <h2 class="serif">La iglesia más cercana a ti es la tuya.</h2>
+      <div class="panel-photo"><img src="/img/iglesia-en-casa-sm.webp" alt="La Biblia abierta durante una iglesia en casa" loading="lazy" width="900" height="1195" /></div>
+      <p>Durante la semana nos reunimos en hogares para comer juntos, orar y abrir la Biblia.</p>
+      <a class="pill" href={links.joinHouseChurch}>Únete a una iglesia en casa</a>
+    </div>
+  </section>
+
+  <!-- 7. Inglés -->
+  <section class="english">
+    <div class="wrap row-simple">
+      <h2 class="serif">¿Hablas inglés? Estamos empezando algo nuevo.</h2>
+      <a class="pill pill--light" href={routes.english.en}>Más información</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .serif { font-family: 'Lora', Georgia, serif; font-weight: 500; text-transform: none; letter-spacing: -0.01em; line-height: 1.08; }
+  .eyebrow { display: block; font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.85rem; color: var(--cream); margin-bottom: 1rem; }
+  .eyebrow.dark { color: var(--orange-ink); }
+
+  .pill { display: inline-flex; align-items: center; justify-content: center; font-family: var(--body); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; text-decoration: none; padding: 0.8em 1.6em; border-radius: 999px; border: 1.5px solid var(--charcoal); color: var(--charcoal); transition: background 0.15s ease, color 0.15s ease; }
+  .pill:hover { background: var(--charcoal); color: var(--cream); }
+  .pill--solid { background: var(--orange); border-color: var(--orange); color: var(--charcoal); }
+  .pill--solid:hover { background: var(--cream); border-color: var(--cream); }
+  .pill--light { border-color: var(--cream); color: var(--cream); }
+  .pill--light:hover { background: var(--cream); color: var(--charcoal); }
+  .pill--dark { border-color: var(--charcoal); }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+
+  /* Hero */
+  .hero { position: relative; min-height: min(88vh, 860px); display: flex; align-items: flex-end; color: var(--cream); overflow: hidden; }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 28%; }
+  .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,25,23,0.86) 0%, rgba(26,25,23,0.6) 38%, rgba(26,25,23,0) 68%), linear-gradient(180deg, rgba(26,25,23,0) 55%, rgba(26,25,23,0.5) 100%); }
+  @media (max-width: 760px) { .hero-shade { background: linear-gradient(180deg, rgba(26,25,23,0.1) 20%, rgba(26,25,23,0.88) 75%); } .hero-img { object-position: 60% 20%; } }
+  .hero-text { position: relative; padding-block: 4rem clamp(3rem, 7vw, 5.5rem); }
+  .hero h1 { font-size: clamp(2.6rem, 1.6rem + 4.2vw, 5.2rem); max-width: 14ch; margin-bottom: 0.4em; color: var(--white); }
+  .hero p { font-size: var(--step-1); max-width: 40ch; color: rgba(250,246,240,0.92); }
+
+  /* Paneles */
+  .panels { display: grid; }
+  @media (min-width: 900px) { .panels { grid-template-columns: 1fr 1fr; } }
+  .panel > * { position: relative; z-index: 1; }
+  .panel { padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 6vw, 6rem); display: flex; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+  .panel h2 { font-size: clamp(2rem, 1.4rem + 2vw, 3.2rem); margin: 0; }
+  .panel p { margin: 0; max-width: 44ch; }
+  .panel--cream { background: #F3ECE1; }
+  .panel--dark { background: var(--charcoal); color: var(--cream); }
+  .panel--orange { background: var(--orange); position: relative; overflow: hidden; }
+  .panel-photo { position: relative; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; }
+  .panel-photo img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; }
+  .bw img { filter: grayscale(1) contrast(1.05); }
+  .bw { overflow: visible; }
+  .bw .block { position: absolute; z-index: 0; right: -14px; bottom: -14px; width: 42%; height: 48%; background: var(--orange); }
+  .soft { font-family: 'Lora', serif; font-style: italic; color: var(--stone); }
+  .facts { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 2rem; margin: 0; }
+  .facts dt { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.85rem; color: var(--orange); padding-top: 0.2rem; }
+  .facts dd { margin: 0; }
+
+  /* Póster */
+  .poster { padding-block: var(--section); overflow: hidden; background: var(--cream); }
+  .giant { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(5rem, 2rem + 15vw, 15rem); line-height: 0.82; color: var(--orange); margin: 0 0 2.5rem -0.04em; max-width: none; }
+  .mission { font-family: 'Lora', serif; font-style: italic; font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.2rem); line-height: 1.4; max-width: 34ch; margin: 0 0 2rem; padding-left: 1.25rem; border-left: 3px solid var(--charcoal); }
+
+  /* Banda con foto */
+  .band { position: relative; min-height: 640px; display: flex; align-items: center; color: var(--cream); overflow: hidden; }
+  .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; }
+  .band-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(26,25,23,0.85) 0%, rgba(26,25,23,0.55) 40%, rgba(26,25,23,0) 70%); }
+  .band-text { position: relative; }
+  @media (max-width: 760px) { .band { align-items: flex-end; min-height: 620px; } .band img { object-position: 38% 30%; } .band-shade { background: linear-gradient(180deg, rgba(26,25,23,0) 35%, rgba(26,25,23,0.88) 80%); } .band-text { padding-bottom: 2.5rem; } }
+  .band h2 { font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.8rem); max-width: 12ch; color: var(--white); }
+  .band p { font-size: var(--step-1); max-width: 34ch; }
+
+  /* Mensaje */
+  .split-row { padding-block: var(--section); background: var(--white); }
+  .row { display: grid; gap: var(--gap); align-items: center; }
+  @media (min-width: 900px) { .row { grid-template-columns: 1.3fr 1fr; } }
+  .split-row h2 { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); }
+  .video { aspect-ratio: 16 / 9; overflow: hidden; background: var(--charcoal); }
+  .video iframe { width: 100%; height: 100%; border: 0; }
+
+  .giant-sm { position: absolute; bottom: -0.18em; right: -0.04em; font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: clamp(5rem, 2rem + 9vw, 11rem); line-height: 1; color: rgba(26,25,23,0.13); pointer-events: none; }
+
+  .english { background: var(--teal); color: var(--cream); padding-block: clamp(3rem, 6vw, 4.5rem); }
+  .row-simple { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; }
+  .english h2 { font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem); margin: 0; max-width: 26ch; }
+</style>
